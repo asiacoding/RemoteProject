@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:blueapp1="clr-namespace:BlueApp1"
+             x:Class="BlueApp1.ControllsPage">
+    <ScrollView>
+
+        <StackLayout BackgroundColor="#fff">
+
+
+            <Frame Padding="15" BackgroundColor="#75AE94" >
+                <Label   Text="Welcome" LineBreakMode="WordWrap" HorizontalOptions="Center"  />
+            </Frame>
+
+            <StackLayout BackgroundColor="#eee" Orientation="Horizontal"  >
+                <ImageButton x:Name="Connect" Source="connect.png"  Clicked="connect" BackgroundColor="White" HeightRequest="80"  CornerRadius="50"  />
+            </StackLayout>
+
+
+
+
+            <StackLayout x:Name="contectPanel_1">
+
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal" HeightRequest="88" Padding="10" >
+                        <Frame HeightRequest="80" BackgroundColor="#75AE94" CornerRadius="70" Padding="6" >
+                            <StackLayout HeightRequest="80" Orientation="Horizontal" Spacing="0">
+                                <ImageButton x:Name="NightImage" Source="moon.png" HeightRequest="80" Aspect="AspectFill" Padding="10" CornerRadius="80"  />
+                                <ImageButton x:Name="SunImage" Source="sun.png" HeightRequest="80" Background="green" Aspect="AspectFill" Padding="10" CornerRadius="80" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+
+                <Frame Padding="5" CornerRadius="30" >
+                    <StackLayout BackgroundColor="#75AE94" Padding="10">
+                        <Label Text="Custom Command" />
+                        <Entry Placeholder="SetCode" x:Name="SetCode" Keyboard="Numeric" />
+                        <blueapp1:CoustomButton WriteMethod="true" ReadMethod="True" Text="Sending" BackgroundColor="#75AE94" CornerRadius="10" Clicked="Button_Clicked"  Grid.Column="0" Grid.Row="0" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+
+            <StackLayout VerticalOptions="EndAndExpand" x:Name="contectPanel_2" >
+                <Label Text="Custom Command" HorizontalTextAlignment="Center" />
+                <Label Text="Custom Command" HorizontalTextAlignment="Center" x:Name="Output" />
+                <ScrollView Orientation="Neither" Padding="10"  >
+                    <Grid >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="3" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <blueapp1:CoustomButton Text="Red LED" BackgroundColor="#75AE94" CornerRadius="10" Clicked="ChangeValueButton" Code="RGP1"  Grid.Column="0" Grid.Row="0" />
+
+                        <blueapp1:CoustomButton Text="Green LED" BackgroundColor="#75AE94" CornerRadius="10" Clicked="ChangeValueButton" Code="RGP2" Grid.Column="0" Grid.Row="1" />
+
+                        <blueapp1:CoustomButton Text="Blue LED" CornerRadius="10" Clicked="ChangeValueButton" Code="RGP3" Grid.Column="0" Grid.Row="2"  BackgroundColor="#75AE94"/>
+
+                        <blueapp1:CoustomButton Text="D2 LED" CornerRadius="10" Clicked="ChangeValueButton" Code="NormalLED1" Grid.Column="1" Grid.Row="0" BackgroundColor="#75AE94" />
+
+                        <blueapp1:CoustomButton Text="D3 LED" CornerRadius="10" Clicked="ChangeValueButton" Code="NormalLED2" Grid.Column="1" Grid.Row="1" BackgroundColor="#75AE94" />
+
+                        <blueapp1:CoustomButton Text="D5 LED" CornerRadius="10" Clicked="ChangeValueButton" Code="NormalLED3" Grid.Column="1" Grid.Row="2" BackgroundColor="#75AE94" />
+
+                        <Line  Grid.ColumnSpan="2" Grid.Row="3" BackgroundColor="#75AE94" />
+
+                        <blueapp1:CoustomButton Text="Set"
+                                            ReadMethod="true"
+                                            CornerRadius="10" 
+                                            Clicked="ChangeValueButton" 
+                                            Code="GetTheWeather"
+                                            Grid.ColumnSpan="2" 
+                                            Grid.Row="4" 
+                                            BackgroundColor="#75AE94" />
+
+                    </Grid>
+                </ScrollView>
+
+            </StackLayout >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

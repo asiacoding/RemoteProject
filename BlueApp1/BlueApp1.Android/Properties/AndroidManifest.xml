@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.AsiaCoding.BluehoothConnect" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="30" />
+	<application android:label="Stm32Interfaseing" android:theme="@style/MainTheme" android:icon="@drawable/ImageIcons"></application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+	<uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
+	<uses-permission android:name="android.permission.DEVICE_POWER" />
+	<uses-permission android:name="android.permission.UPDATE_DEVICE_STATS" />
+	<uses-permission android:name="android.permission.BIND_MIDI_DEVICE_SERVICE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="com.google.android.things.permission.MANAGE_BLUETOOTH" />
+	<uses-permission android:name="android.permission.ACCESS_CHECKIN_PROPERTIES" />
+</manifest>
