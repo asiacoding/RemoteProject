@@ -3,7 +3,9 @@
 #include <Arduino.h>
 
 #define SYSPROGS_ARDUINO_EXPAND_GENERATED_PROTOTYPES \
-	int32_t stoi(String str); \
+	void PrintMsg(String X); \
+	int LoadingKey(); \
+	void Loadapp(); \
 	void setup(); \
 	void loop(); \
 

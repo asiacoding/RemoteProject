@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlueApp1.Home" BackgroundColor="#fff">
+             x:Class="BlueApp1.Home" BackgroundColor="#fff" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
 
@@ -18,13 +18,6 @@
             <ScrollView>
                 <StackLayout>
 
-                    <StackLayout x:Name="HowToUesing">
-
-                    </StackLayout>
-
-                    <StackLayout x:Name="ProjectList">
-                    </StackLayout>
-
                     <Grid Padding="5" ColumnSpacing="0" RowSpacing="2" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
@@ -34,19 +27,16 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
-
-                        <!---->
+                        <!-- -->
                         <Button Text="Connect" CharacterSpacing="3" x:Name="Connect"  BackgroundColor="#75AE94" Clicked="Checkconnect"  />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="sun" />
-                        <!---->
-                        <Button Text="Opne Control" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="1" />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="sun" Grid.Row="1" />
-                   
+                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="bluetooth" />
+                        <!-- -->
+                        <Button Text="GetData"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="1" />
+                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="1" />
+                        <!-- -->
+                        <Button Text="Opne Control" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="2" />
+                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="2" />
                     </Grid>
-                    
-            
-                    <!--     <WebView Source="http://192.168.1.2:1997/1.html"  HeightRequest="900" /> -->
-
                 </StackLayout>
             </ScrollView>
           

@@ -9,7 +9,11 @@ namespace BlueApp1
         public App()
         {
             InitializeComponent();
-            MainPage = new Home();
+
+            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(
+            //   "NjI1MDYzQDMyMzAyZTMxMmUzMEVRNzg2VU54bEp3OXVlM2tTZXdKb3BQWWREa1UwRUpZY3NGVmlkRUNVQUk9");
+
+            MainPage = new NavigationPage(new Home());
         }
 
         protected override void OnStart()

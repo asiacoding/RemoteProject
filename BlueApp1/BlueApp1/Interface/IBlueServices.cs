@@ -18,6 +18,6 @@ namespace BlueApp1
         event EventHandler<object> Reading;
         event EventHandler<object> ClosedConnecting;
 
-        Task<string> IsConnectByBluethooth();
+        Task<string> BluetoothListeningforOne(bool ConvertToString = true);
     }
 }

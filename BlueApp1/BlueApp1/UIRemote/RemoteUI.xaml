@@ -1,12 +1,118 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlueApp1.UIRemote.RemoteUI">
+             x:Class="BlueApp1.UIRemote.RemoteUI"  BackgroundColor="#75AE94" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="0">
+
+
+                <!-- Ok -->
+                <ScrollView Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Padding="5">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" >
+                        <!-- OK Button -->
+                
+                        <!-- Keyboard -->
+                        <ImageButton 
+                                              BackgroundColor="#75AE94"
+                                      
+                                         HeightRequest="50" 
+                                         Source="pincode_keyboard" />
+                        <!-- EDIT -->
+                        <ImageButton Source="microphone" 
+                                 BackgroundColor="#75AE94"
+                                         HeightRequest="50"   />
+                        <!-- Microphone -->
+                        <ImageButton Source="edit" BackgroundColor="#75AE94"
+                                   
+                                         HeightRequest="50"  />
+
+                        <!-- List Chanels -->
+                        <ImageButton Source="ListChanels"
+                                        BackgroundColor="#75AE94"
+                                         HeightRequest="50"  />
+
+                    </StackLayout>
+                </ScrollView>
+
+                <!-- Control -->
+                <ScrollView VerticalOptions="EndAndExpand"  BackgroundColor="#75AE94" >
+                    <Grid
+                              Grid.ColumnSpan="3"
+                              Grid.Row="0"
+                              ColumnSpacing="-4"
+                              RowSpacing="-4">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <!-- Up -->
+                        <ImageButton Grid.ColumnSpan="3"  
+                                     Source="up"  
+                                     Padding="5"  BackgroundColor="#75AE94"
+                                     Clicked="upClick" />
+                        <!-- Left -->
+                        <ImageButton Grid.Row="1"     BackgroundColor="#75AE94"
+                                     Padding="5"
+                                     Source="left" 
+                                     Clicked="leftClick" />
+                        <!-- Left -->
+                        <ImageButton Grid.Row="1"     Grid.Column="1"   
+                                     Padding="5"  BackgroundColor="#75AE94"
+                                      Source="ok" 
+                                     Clicked="leftClick" />
+                        <!-- Right -->
+                        <ImageButton Grid.Row="1" Grid.Column="2"    BackgroundColor="#75AE94"
+                                     Source="right" 
+                                     Padding="5"
+                                     Clicked="rightClick" />
+                        <!-- Down -->
+                        <ImageButton Grid.Row="2"  BackgroundColor="#75AE94"
+                                     Padding="5"
+                                     Grid.ColumnSpan="3" 
+                                     Source="down" 
+                                     Clicked="downClick" />
+                    </Grid>
+                </ScrollView>
+
+                <!-- Keys -->
+                <ScrollView  Margin="0,-7,0,0"  BackgroundColor="#75AE94" >
+                    <Grid  BackgroundColor="#75AE94" Padding="10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <!--  -->
+                        <ImageButton  CornerRadius="50" Grid.Row="0" Grid.Column="0" Source="power"  Clicked="upClick" />
+                        <ImageButton  CornerRadius="50" Grid.Row="0" Grid.Column="1" Source="_0"  Clicked="upClick"  />
+                        <ImageButton  CornerRadius="50" Grid.Row="0" Grid.Column="2" Source="noSound"  Clicked="upClick" />
+
+                        <!--  -->
+                        <ImageButton  CornerRadius="50" Grid.Row="1" Grid.Column="0" Source="_1"  Clicked="upClick"  />
+                        <ImageButton  CornerRadius="50" Grid.Row="1" Grid.Column="1" Source="_2"  Clicked="upClick"  />
+                        <ImageButton  CornerRadius="50" Grid.Row="1" Grid.Column="2" Source="_3"  Clicked="upClick"  />
+
+                        <ImageButton  CornerRadius="50" Grid.Row="2" Grid.Column="0" Source="_4"  Clicked="upClick" />
+                        <ImageButton  CornerRadius="50" Grid.Row="2" Grid.Column="1" Source="_5"  Clicked="upClick" />
+                        <ImageButton  CornerRadius="50" Grid.Row="2" Grid.Column="2" Source="_6"  Clicked="upClick" />
+
+                        <ImageButton  CornerRadius="50" Grid.Row="3" Grid.Column="0" Source="_7"  Clicked="upClick" />
+                        <ImageButton  CornerRadius="50" Grid.Row="3" Grid.Column="1" Source="_8"  Clicked="upClick" />
+                        <ImageButton  CornerRadius="50" Grid.Row="3" Grid.Column="2" Source="_9"  Clicked="upClick" />
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
