@@ -8,4 +8,8 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Standard\Edit\" />
+  </ItemGroup>
+
 </Project>

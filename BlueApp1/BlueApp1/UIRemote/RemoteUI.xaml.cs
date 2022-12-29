@@ -12,52 +12,75 @@ namespace BlueApp1.UIRemote
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RemoteUI : ContentPage
     {
-        private readonly IBlueServices ServicesBLUE = null;
 
+        interface_enum.SpeechToText speechToText;
         public RemoteUI()
         {
             InitializeComponent();
-            ServicesBLUE = DependencyService.Get<IBlueServices>();
 
-        }
-
-   
-
-        private void downClick(object sender, EventArgs e)
-        {
-            if (ServicesBLUE.IsConnect)
+            speechToText = new interface_enum.SpeechToText(new interface_enum.IMessageSenderDoWork.EventHandler(delegate (string i, string i2)
             {
-                ServicesBLUE.Write("16749165;");
-            }
+                if (!string.IsNullOrEmpty(i))
+                {
+                    VoiceCode(i);
+                }
+            }));
+            InitProjectButton();
         }
 
-        private void rightClick(object sender, EventArgs e)
+        void InitProjectButton()
         {
-            if (ServicesBLUE.IsConnect)
-            {
-                ServicesBLUE.Write("4039382595;");
-            }
+            cb_1.MainPageOwner =
+            cb_2.MainPageOwner =
+            cb_3.MainPageOwner =
+            cb_4.MainPageOwner =
+            cb_5.MainPageOwner =
+            cb_6.MainPageOwner =
+            cb_7.MainPageOwner =
+            cb_8.MainPageOwner =
+            cb_9.MainPageOwner =
+            cb_0.MainPageOwner =
+            cb_left.MainPageOwner =
+            cb_up.MainPageOwner =
+            cb_right.MainPageOwner =
+            cb_power.MainPageOwner =
+            cb_ok.MainPageOwner =
+            cb_NoSound.MainPageOwner =
+            cb_down.MainPageOwner = this;
         }
 
-        private void leftClick(object sender, EventArgs e)
-        {
-            if (ServicesBLUE.IsConnect)
-            {
-                ServicesBLUE.Write("16736925;");
-            }
-        }
 
-        private void upClick(object sender, EventArgs e)
-        {
-            if (ServicesBLUE.IsConnect)
-            {
-                ServicesBLUE.Write("1047077;");
-            }
-        }
+
 
         private void ChangeMode(object sender, EventArgs e)
         {
 
         }
+
+        private void SetKeyboard(object sender, EventArgs e)
+        {
+            changelayout(KeyboardPanel);
+        }
+
+
+        void changelayout(View view)
+        {
+            List<View> ControlReg = new List<View> { KeyboardPanel };
+            ControlReg.ForEach(a => a.IsVisible = false);
+            view.IsVisible = true;
+        }
+
+        private void MicroPhoneCode(object sender, EventArgs e)
+        {
+            if (speechToText != null)
+                speechToText.Start();
+        }
+
+        private void VoiceCode(string Code)
+        {
+            // do Run Code
+        }
+
+
     }
 }

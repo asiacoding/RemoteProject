@@ -9,7 +9,7 @@
             <StackLayout Padding="-5" Spacing="0">
                 <Frame Padding="5,25,0,10" BackgroundColor="#75AE94" CornerRadius="15"  >
                     <StackLayout>
-                        <Label Text="All in One remote" FontSize="20" LineBreakMode="WordWrap" HorizontalOptions="Center"  />
+                        <Label Text="جهاز تحكم عن بعد فائق" LineBreakMode="WordWrap" HorizontalOptions="Center"  />
                         <Label BackgroundColor="Transparent" x:Name="Notes" Text=""  HeightRequest="20" />
                     </StackLayout>
                 </Frame>
@@ -28,14 +28,15 @@
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
                         <!-- -->
-                        <Button Text="Connect" CharacterSpacing="3" x:Name="Connect"  BackgroundColor="#75AE94" Clicked="Checkconnect"  />
+                        <Button Text="اتصل" CharacterSpacing="3" x:Name="Connect"  BackgroundColor="#75AE94" Clicked="Checkconnect"  />
                         <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="bluetooth" />
                         <!-- -->
-                        <Button Text="GetData"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="1" />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="1" />
+                        <Button Text="لوحات التحكم" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="1" />
+                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="pincode_keyboard" Grid.Row="1" />
                         <!-- -->
-                        <Button Text="Opne Control" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="2" />
+                        <Button Text="حذف البيانات"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="2" />
                         <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="2" />
+            
                     </Grid>
                 </StackLayout>
             </ScrollView>

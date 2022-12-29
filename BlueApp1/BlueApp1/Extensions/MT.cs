@@ -6,6 +6,9 @@ namespace BlueApp1.Extensions
 {
     internal static class MT
     {
+
+        public const string SystemGuid = "7FDC63DB-BBE2-49A5-BE76-79799E8B72DA>"; // It' is System Code Def
+
         public static string ConvertDECtoBIN(this object ObjNumber)
         {
             string answer;

@@ -36,5 +36,32 @@ namespace Models.Standard.Get
             }
 
         }
+    
+        public RemoteButtonModels SystemPad(string PadName)
+        {
+            try
+            {
+                if (MainSqlite.DataBase == null)
+                {
+                    return null;
+                }
+
+
+                var MyKeyPad = MainSqlite.DataBase.Query<RemoteButtonModels>("select * from RemoteButtonModels where Name = @p0", PadName).ToList();
+
+                if ((MyKeyPad == null) || MyKeyPad.Count <= 0)
+                {
+                    return null;
+                }
+
+
+                return MyKeyPad.FirstOrDefault();
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

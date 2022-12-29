@@ -13,18 +13,12 @@ namespace BlueApp1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home : ContentPage
     {
-        interface_enum.SpeechToText speechToText;
+        Interface.ISystemFunction SystemFunction = Xamarin.Forms.DependencyService.Get<Interface.ISystemFunction>();
         private readonly IBlueServices ServicesBLUE = null;
         public Home()
         {
             InitializeComponent();
             ServicesBLUE = DependencyService.Get<IBlueServices>();
-
-            speechToText = new interface_enum.SpeechToText(new interface_enum.IMessageSenderDoWork.EventHandler(delegate (string i, string i2)
-            {
-                this.SandAlert(String.Format("Res:{0},Log:{1}", i, i2));
-            }));
-
         }
 
         private void opneControl(object sender, EventArgs e)
@@ -35,21 +29,32 @@ namespace BlueApp1
             }
             else
             {
-                Notes.Text = "Please contact my device first";
+                ///Please contact my device first
+               // SystemFunction.ClassicMessage();
+                Notes.Text = "يرجى الاتصال بجهاز أولا";
             }
         }
 
         private void Checkconnect(object sender, EventArgs e)
         {
-            //Check is connec or no
-            if (!ServicesBLUE.IsConnect)
+            try
             {
-                ServicesBLUE.Connect();
-                Notes.Text = "You are now connected to a device.";
+                //Check is connec or no
+                if (!ServicesBLUE.IsConnect)
+                {
+                    ServicesBLUE.Connect();
+
+                    Notes.Text = "تم الاتصال بجهاز";
+                }
+                else
+                {
+                    Notes.Text = "انت بالفعل على متصل";
+                    SystemFunction.ClassicMessage("Weclome");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Notes.Text = "You are already online";
+                //
             }
         }
 
@@ -66,9 +71,9 @@ namespace BlueApp1
             // {
             //     Notes.Text = "Please contact my device first";
             // }
-            if (speechToText != null)
-                speechToText.Start();
 
+            Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
+            DeleteObjRemote.DeleteAll("1234");//Save Codes
         }
     }
 }

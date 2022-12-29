@@ -3,9 +3,8 @@
 #include <Arduino.h>
 
 #define SYSPROGS_ARDUINO_EXPAND_GENERATED_PROTOTYPES \
-	void PrintMsg(String X); \
-	int LoadingKey(); \
-	void Loadapp(); \
 	void setup(); \
+	void AddNewSagnle(); \
+	void SetSagnle(); \
 	void loop(); \
 

@@ -78,7 +78,7 @@ public:
 	}
 	void ConfingPins() {
 		//Base Class Stm32F103 in Stm32clbeIDE
-		GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+		//GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 
 		__HAL_RCC_GPIOA_CLK_ENABLE();
 		__HAL_RCC_GPIOB_CLK_ENABLE();
@@ -94,24 +94,23 @@ public:
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_RESET);
 
-		GPIO_InitStruct.Pin = GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_9;
-		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-		//GPIO_InitStruct.Pull = GPIO_PULLUP;
-		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-		GPIO_InitStruct.Pin = GPIO_PIN_10;
-		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-		GPIO_InitStruct.Pull = GPIO_PULLUP;
-		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-		GPIO_InitStruct.Pin = GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
-		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-		GPIO_InitStruct.Pull = GPIO_PULLUP;
-		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-		HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+		GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+		
+		GPIO_Init_Pin(GPIOA, GPIO_InitStruct, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_9, GPIO_MODE_OUTPUT_PP, GPIO_PULLUP, GPIO_SPEED_FREQ_LOW);
+		GPIO_Init_Pin(GPIOA, GPIO_InitStruct, GPIO_PIN_10, GPIO_MODE_INPUT, GPIO_PULLUP, GPIO_SPEED_FREQ_LOW);
+		GPIO_Init_Pin(GPIOC, GPIO_InitStruct, GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_MODE_OUTPUT_PP, GPIO_PULLUP, GPIO_SPEED_FREQ_LOW);
 	}
+	
+	void GPIO_Init_Pin(GPIO_TypeDef* Port, GPIO_InitTypeDef GPIO_InitStruct, uint32_t Pins, uint32_t GPIO_MODE_xx, uint32_t GPIO_pull_type, uint32_t GPIO_SPEED_xxx) // GPIO_MODE_
+	{
+	
+		GPIO_InitStruct.Pin = Pins;//GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
+		GPIO_InitStruct.Mode = GPIO_MODE_xx;
+		GPIO_InitStruct.Pull = GPIO_pull_type;
+		GPIO_InitStruct.Speed = GPIO_SPEED_xxx;
+		HAL_GPIO_Init(Port, &GPIO_InitStruct);
+	}
+	
 	void Write(std::string SendMsg) {
 		int X = 0;
 		int Max = SendMsg.length();

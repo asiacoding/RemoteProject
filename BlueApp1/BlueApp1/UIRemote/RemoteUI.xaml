@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control"
              x:Class="BlueApp1.UIRemote.RemoteUI"  BackgroundColor="#75AE94" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
@@ -11,108 +11,180 @@
                 <ScrollView Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Padding="5">
                     <StackLayout Orientation="Horizontal" HeightRequest="50" >
                         <!-- OK Button -->
-                
+
                         <!-- Keyboard -->
-                        <ImageButton 
-                                              BackgroundColor="#75AE94"
-                                      
-                                         HeightRequest="50" 
-                                         Source="pincode_keyboard" />
-                        <!-- EDIT -->
-                        <ImageButton Source="microphone" 
-                                 BackgroundColor="#75AE94"
-                                         HeightRequest="50"   />
+                        <ImageButton BackgroundColor="#75AE94"
+                                     HeightRequest="50" 
+                                     Clicked="SetKeyboard"
+                                     Source="pincode_keyboard" />
+
                         <!-- Microphone -->
-                        <ImageButton Source="edit" BackgroundColor="#75AE94"
-                                   
-                                         HeightRequest="50"  />
+                        <ImageButton Source="microphone" 
+                                     BackgroundColor="#75AE94"
+                                     HeightRequest="50" Clicked="MicroPhoneCode" />
+
+                        <!-- EDIT -->
+                        <ImageButton Source="edit" 
+                                     BackgroundColor="#75AE94"
+                                     HeightRequest="50"
+                                     />
 
                         <!-- List Chanels -->
                         <ImageButton Source="ListChanels"
-                                        BackgroundColor="#75AE94"
-                                         HeightRequest="50"  />
+                                     BackgroundColor="#75AE94"
+                                     HeightRequest="50" />
 
+                  
+                        
                     </StackLayout>
                 </ScrollView>
+                
+                
 
                 <!-- Control -->
                 <ScrollView VerticalOptions="EndAndExpand"  BackgroundColor="#75AE94" >
-                    <Grid
-                              Grid.ColumnSpan="3"
-                              Grid.Row="0"
-                              ColumnSpacing="-4"
-                              RowSpacing="-4">
+                    <Grid Grid.ColumnSpan="3"
+                          Grid.Row="0"
+                          ColumnSpacing="-4"
+                          RowSpacing="-4">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="100" />
                             <RowDefinition Height="100" />
                             <RowDefinition Height="100" />
                         </Grid.RowDefinitions>
+
                         <!-- Up -->
-                        <ImageButton Grid.ColumnSpan="3"  
-                                     Source="up"  
-                                     Padding="5"  BackgroundColor="#75AE94"
-                                     Clicked="upClick" />
+                        <control:CustomButtonRemotely  Grid.ColumnSpan="3"  
+                                                       Source="up"  
+                                                       Padding="5" 
+                                                       x:Name="cb_up"
+                                                       BackgroundColor="#75AE94" />
                         <!-- Left -->
-                        <ImageButton Grid.Row="1"     BackgroundColor="#75AE94"
-                                     Padding="5"
-                                     Source="left" 
-                                     Clicked="leftClick" />
+                        <control:CustomButtonRemotely Grid.Row="1" 
+                                                      BackgroundColor="#75AE94"
+                                                      x:Name="cb_left"
+                                                      Padding="5"
+                                                      Source="left" />
                         <!-- Left -->
-                        <ImageButton Grid.Row="1"     Grid.Column="1"   
-                                     Padding="5"  BackgroundColor="#75AE94"
-                                      Source="ok" 
-                                     Clicked="leftClick" />
+                        <control:CustomButtonRemotely Grid.Row="1"            
+                                                      x:Name="cb_ok"
+                                                      Grid.Column="1"   
+                                                      Padding="5" 
+                                                      BackgroundColor="#75AE94"
+                                                      Source="ok" />
                         <!-- Right -->
-                        <ImageButton Grid.Row="1" Grid.Column="2"    BackgroundColor="#75AE94"
-                                     Source="right" 
-                                     Padding="5"
-                                     Clicked="rightClick" />
+                        <control:CustomButtonRemotely Grid.Row="1" 
+                                                      x:Name="cb_right"
+                                                      Grid.Column="2"    
+                                                      BackgroundColor="#75AE94"
+                                                      Source="right" 
+                                                      Padding="5" />
                         <!-- Down -->
-                        <ImageButton Grid.Row="2"  BackgroundColor="#75AE94"
-                                     Padding="5"
-                                     Grid.ColumnSpan="3" 
-                                     Source="down" 
-                                     Clicked="downClick" />
+                        <control:CustomButtonRemotely Grid.Row="2" 
+                                                      x:Name="cb_down"
+                                                      BackgroundColor="#75AE94"
+                                                      Padding="5"
+                                                      Grid.ColumnSpan="3" 
+                                                      Source="down" />
                     </Grid>
                 </ScrollView>
 
+
                 <!-- Keys -->
-                <ScrollView  Margin="0,-7,0,0"  BackgroundColor="#75AE94" >
-                    <Grid  BackgroundColor="#75AE94" Padding="10" >
+                <ScrollView Margin="0,-7,0,0"  BackgroundColor="#75AE94" x:Name="KeyboardPanel" >
+                    <Grid BackgroundColor="#75AE94" Padding="10">
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60" />
                             <RowDefinition Height="60" />
                             <RowDefinition Height="60" />
                             <RowDefinition Height="60" />
                         </Grid.RowDefinitions>
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
+                        <control:CustomButtonRemotely  CornerRadius="50" 
+                                                       Grid.Row="0" 
+                                                       x:Name="cb_power"
+                                                       Grid.Column="0"
+                                                       Source="power" />
 
-                        <!--  -->
-                        <ImageButton  CornerRadius="50" Grid.Row="0" Grid.Column="0" Source="power"  Clicked="upClick" />
-                        <ImageButton  CornerRadius="50" Grid.Row="0" Grid.Column="1" Source="_0"  Clicked="upClick"  />
-                        <ImageButton  CornerRadius="50" Grid.Row="0" Grid.Column="2" Source="noSound"  Clicked="upClick" />
+                        <control:CustomButtonRemotely  CornerRadius="50"
+                                                       Grid.Row="0" 
+                                                       x:Name="cb_0"
+                                                       Grid.Column="1"
+                                                       Source="_0" />
 
-                        <!--  -->
-                        <ImageButton  CornerRadius="50" Grid.Row="1" Grid.Column="0" Source="_1"  Clicked="upClick"  />
-                        <ImageButton  CornerRadius="50" Grid.Row="1" Grid.Column="1" Source="_2"  Clicked="upClick"  />
-                        <ImageButton  CornerRadius="50" Grid.Row="1" Grid.Column="2" Source="_3"  Clicked="upClick"  />
+                        <control:CustomButtonRemotely  CornerRadius="50" 
+                                                       Grid.Row="0" 
+                                                       x:Name="cb_NoSound"
+                                                       Grid.Column="2" 
+                                                       Source="noSound" />
 
-                        <ImageButton  CornerRadius="50" Grid.Row="2" Grid.Column="0" Source="_4"  Clicked="upClick" />
-                        <ImageButton  CornerRadius="50" Grid.Row="2" Grid.Column="1" Source="_5"  Clicked="upClick" />
-                        <ImageButton  CornerRadius="50" Grid.Row="2" Grid.Column="2" Source="_6"  Clicked="upClick" />
+                        <control:CustomButtonRemotely  CornerRadius="50"
+                                                       Grid.Row="1" 
+                                                       x:Name="cb_1"
+                                                       Grid.Column="0" 
+                                                       Source="_1" />
 
-                        <ImageButton  CornerRadius="50" Grid.Row="3" Grid.Column="0" Source="_7"  Clicked="upClick" />
-                        <ImageButton  CornerRadius="50" Grid.Row="3" Grid.Column="1" Source="_8"  Clicked="upClick" />
-                        <ImageButton  CornerRadius="50" Grid.Row="3" Grid.Column="2" Source="_9"  Clicked="upClick" />
+                        <control:CustomButtonRemotely  CornerRadius="50" 
+                                                       Grid.Row="1" 
+                                                       x:Name="cb_2"
+                                                       Grid.Column="1" 
+                                                       Source="_2" />
+
+                        <control:CustomButtonRemotely  CornerRadius="50" 
+                                                       Grid.Row="1" 
+                                                       x:Name="cb_3"
+                                                       Grid.Column="2" 
+                                                       Source="_3" />
+
+                        <control:CustomButtonRemotely CornerRadius="50" 
+                                                      Grid.Row="2" 
+                                                      x:Name="cb_4"
+                                                      Grid.Column="0" 
+                                                      Source="_4" />
+
+                        <control:CustomButtonRemotely CornerRadius="50"
+                                                      Grid.Row="2"
+                                                      x:Name="cb_5"
+                                                      Grid.Column="1" 
+                                                      Source="_5" />
+
+                        <control:CustomButtonRemotely CornerRadius="50"
+                                                      Grid.Row="2"
+                                                      x:Name="cb_6"
+                                                      Grid.Column="2" 
+                                                      Source="_6" />
+
+                        <control:CustomButtonRemotely CornerRadius="50"
+                                                      Grid.Row="3"
+                                                      x:Name="cb_7"
+                                                      Grid.Column="0" 
+                                                      Source="_7" />
+                        
+                        <control:CustomButtonRemotely CornerRadius="50" 
+                                                      Grid.Row="3" 
+                                                      x:Name="cb_8"
+                                                      Grid.Column="1" 
+                                                      Source="_8" />
+
+                        <control:CustomButtonRemotely CornerRadius="50"
+                                                      Grid.Row="3" 
+                                                      x:Name="cb_9"
+                                                      Grid.Column="2" 
+                                                      Source="_9" />
+
                     </Grid>
                 </ScrollView>
+
             </StackLayout>
+
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

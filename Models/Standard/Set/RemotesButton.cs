@@ -7,7 +7,7 @@ namespace Models.Standard.Set
 {
     public class RemotesButton
     {
-        public static bool Add(RemoteButtonModels remote)
+        public  bool Add(RemoteButtonModels remote)
         {
             try
             {

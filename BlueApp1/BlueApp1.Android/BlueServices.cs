@@ -30,7 +30,13 @@ namespace BlueApp1.Droid
 
         public bool IsConnect => _IsConnect;
 
-        public bool _IsConnect { set; get; }
+        public bool _IsConnect
+        {
+            get
+            {
+                if (_Socket == null) return false; else return _Socket.IsConnected;
+            }
+        }
 
         public event EventHandler<object> Reading;//Buffer,ResordString
         BluetoothDevice device;
@@ -91,7 +97,7 @@ namespace BlueApp1.Droid
 
                 await _Socket.ConnectAsync();
 
-                _IsConnect = _Socket.IsConnected;
+             //   _IsConnect = _Socket.IsConnected;
 
 
 
@@ -112,7 +118,7 @@ namespace BlueApp1.Droid
                 {
                     Toast.MakeText(MainActivity.MainActivitY, ex2.Message, ToastLength.Long);
                 }
-                _IsConnect = false;
+             //   _IsConnect = false;
                 _ = Toast.MakeText(MainActivity.MainActivitY.ApplicationContext, ex.Message, ToastLength.Long);
             }
         }
@@ -172,40 +178,47 @@ namespace BlueApp1.Droid
             }
         }
 
+        public async void ClaerBuffer()
+        {
+            await BluetoothListeningforOne(true);
+        }
 
-        public async Task<string> BluetoothListeningforOne(bool ConvertToString)
+        public async Task<string> BluetoothListeningforOne(bool ConvertToString = true)
         {
             try
             {
+
                 if ((_Socket == null) || !_Socket.IsConnected)
                 {
                     if (ClosedConnecting != null)
                     {
                         ClosedConnecting.Invoke(this, "No conenct App");
                     }
-
                     return null;
                 }
 
                 string Data = "";
-                byte[] buffer = new byte[254];
+                byte[] buffer = new byte[50];
                 bool OutOfMainBlock = false;
 
                 while (_Socket.IsConnected)
                 {
-                    await _Socket.InputStream.ReadAsync(buffer, 0, buffer.Length);
+                    _ = await _Socket.InputStream.ReadAsync(buffer, 0, buffer.Length);
                     foreach (byte item in buffer)
                     {
-
                         string Output = ConvertToString ? Convert.ToChar(item).ToString() : item.ToString();
-
                         if (Output == ";" || Output == "\0" || item == 59)
                         {
                             OutOfMainBlock = true;
                             break;
                         }
-                        // all 11111111 in String1
                         Data += Output;
+                    }
+
+                    if (string.IsNullOrEmpty(Data))
+                    {
+                        buffer = new byte[50];
+                        continue;
                     }
 
                     if (OutOfMainBlock)
@@ -213,7 +226,6 @@ namespace BlueApp1.Droid
                         break;
                     }
                 }
-
                 return Data;
             }
             catch (Exception ex)
@@ -221,7 +233,6 @@ namespace BlueApp1.Droid
                 return ex.Message;
             }
         }
-
 
     }
 }

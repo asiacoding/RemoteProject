@@ -19,5 +19,6 @@ namespace BlueApp1
         event EventHandler<object> ClosedConnecting;
 
         Task<string> BluetoothListeningforOne(bool ConvertToString = true);
+        void ClaerBuffer();
     }
 }
