@@ -93,10 +93,7 @@ namespace BlueApp1.interface_enum
             {
                 AddRes(args);
             });
-
-
         }
-        
         private void AddRes(string a)
         {
             if (IGotTheText != null)
@@ -108,9 +105,7 @@ namespace BlueApp1.interface_enum
                 log += "\n" + "Not Registered";
             }
         }
-
         public string log { set; get; }
-
         public event IMessageSenderDoWork.EventHandler IGotTheText;
     }
 

@@ -1,12 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlueApp1.UIRemote.setupScreenRemotely">
+             x:Class="BlueApp1.UIRemote.setupScreenRemotely" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <StackLayout>
+
+                    <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="4"   >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="اعداد لوحة التحكم" 
+                                   Grid.Column="0" 
+                                   LineBreakMode="WordWrap"
+                                   TextColor="White"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"  />
+                            <Button Text="حفظ" 
+                                    Grid.Column="1"
+                                    BackgroundColor="#75AE94"
+                                    TextColor="White"   />
+                        </Grid>
+                    </Frame>
+
+                    <StackLayout>
+                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+
+            <Grid VerticalOptions="EndAndExpand" ColumnSpacing="1" Padding="1">
+             
+             
+            </Grid>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

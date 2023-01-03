@@ -19,12 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Page\ControllsPage.xaml.cs">
-      <DependentUpon>ControllsPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
+    <EmbeddedResource Update="EventsPage\ChannelsListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Home.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -43,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <Folder Include="Page\" />
   </ItemGroup>
 
   <ItemGroup>

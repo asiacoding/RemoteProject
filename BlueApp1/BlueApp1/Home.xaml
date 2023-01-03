@@ -5,15 +5,29 @@
     <ContentPage.Content>
         <StackLayout>
 
-            
-            <StackLayout Padding="-5" Spacing="0">
-                <Frame Padding="5,25,0,10" BackgroundColor="#75AE94" CornerRadius="15"  >
-                    <StackLayout>
-                        <Label Text="جهاز تحكم عن بعد فائق" LineBreakMode="WordWrap" HorizontalOptions="Center"  />
-                        <Label BackgroundColor="Transparent" x:Name="Notes" Text=""  HeightRequest="20" />
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
+
+
+
+            <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="4"   >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="90" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="جهاز تحكم عن بعد فائق"
+                                   Grid.Column="0" 
+                                   LineBreakMode="WordWrap"
+                                   TextColor="White"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"  />
+                    <Button Text="" x:Name="ConnectBtn"
+                                    Grid.Column="1"
+                                    BackgroundColor="#75AE94"
+                            Clicked="Checkconnect"
+                                    TextColor="White"   />
+                </Grid>
+            </Frame>
+
 
             <ScrollView>
                 <StackLayout>
@@ -28,17 +42,14 @@
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
                         <!-- -->
-                        <Button Text="اتصل" CharacterSpacing="3" x:Name="Connect"  BackgroundColor="#75AE94" Clicked="Checkconnect"  />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="bluetooth" />
+                        <Button Text="لوحات التحكم" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="0"  TextColor="White" />
+                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="pincode_keyboard" Grid.Row="0" />
                         <!-- -->
-                        <Button Text="لوحات التحكم" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="1" />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="pincode_keyboard" Grid.Row="1" />
+                        <Button Text="مشروع جديد"  BackgroundColor="#75AE94" Clicked="AddNewProject"  Grid.Row="1"  TextColor="White" />
+                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="1" />
                         <!-- -->
-                        <Button Text="مشروع جديد"  BackgroundColor="#75AE94" Clicked="AddNewProject"  Grid.Row="2" />
+                        <Button Text="الاعداد"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="2"  TextColor="White" />
                         <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="2" />
-                        <!-- -->
-                        <Button Text="الاعداد"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="3" />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="3" />
             
                     </Grid>
                 </StackLayout>
@@ -46,6 +57,7 @@
           
             
 
+            <Label BackgroundColor="Transparent" TextColor="Black" x:Name="Notes" Text="" VerticalOptions="EndAndExpand" HorizontalTextAlignment="Center" Margin="5"  />
 
         </StackLayout>
     </ContentPage.Content>

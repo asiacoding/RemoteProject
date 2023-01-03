@@ -7,7 +7,7 @@ namespace BlueApp1
 {
     public interface IBlueServices
     {
-        void Connect(string deviceName = "IRremote");
+        Task<bool> Connect(string deviceName = "IRremote");
         void Read();
         void Write(string name);
         

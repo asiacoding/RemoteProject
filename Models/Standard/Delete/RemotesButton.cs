@@ -30,5 +30,35 @@ namespace Models.Standard.Delete
                 return false;
             }
         }
+        public bool DeleteAll(string EnterPassword,string GuidProject)
+        {
+            try
+            {
+                if (EnterPassword != "1234")
+                {
+                    return false;
+                }
+
+                if (string.IsNullOrEmpty(GuidProject))
+                {
+                    return false; 
+                }
+
+                if (MainSqlite.DataBase == null)
+                {
+                    return false;
+                }
+
+                string qerys = "DELETE FROM [RemoteButtonModels] WHERE Guid='" + GuidProject + "';";
+              
+                MainSqlite.DataBase.Query<RemoteButtonModels>(qerys);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

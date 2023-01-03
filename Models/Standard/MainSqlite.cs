@@ -36,9 +36,10 @@ namespace Models.Standard
         //Add Here new Models ❕❕
         private static void LoadModels(SQLiteConnection Sql)
         {
-            Sql.CreateTable<RemoteButtonModels>();
-            Sql.CreateTable<RemoteProjectModels>();
-            Sql.CreateTable<LanguageModel>();
+            _ = Sql.CreateTable<RemoteButtonModels>();
+            _ = Sql.CreateTable<RemoteProjectModels>();
+            _ = Sql.CreateTable<LanguageModel>();
+            _ = Sql.CreateTable<ChannelModels>();
         }
     }
 }

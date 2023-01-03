@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlueApp1.EventsPage.ChannelsListPage" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="2,9,2,8"    >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="90" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="القنوات المتاحة"
+                                   Grid.Column="0" 
+                                   LineBreakMode="WordWrap"
+                                   TextColor="White"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"  />
+                        <Button Text="اضافة قنوات" Grid.Column="1" BackgroundColor="#75AE94" Clicked="NextSatp" TextColor="White"   />
+                    </Grid>
+                </Frame>
+
+                <ScrollView>
+                    <StackLayout>
+                        
+                    </StackLayout>
+                </ScrollView>
+                
+                <ScrollView>
+                    <StackLayout>
+                        
+                        <StackLayout>
+                            <Frame Padding="0" BackgroundColor="#466858" CornerRadius="20" Margin="7,0,7,0"   >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="90" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Text="MBC 3"
+                                   Grid.Column="0" BackgroundColor="Transparent" 
+                                   TextColor="White" />
+                                    <Button Text="32"  Grid.Column="1" BackgroundColor="Transparent" Clicked="NextSatp" TextColor="White"   />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Frame Padding="0" BackgroundColor="#466858" CornerRadius="20" Margin="7,0,7,0"    >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="90" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Text="MBC 2"
+                                   Grid.Column="0" BackgroundColor="Transparent" 
+                                   TextColor="White" />
+                                    <Button Text="34"  Grid.Column="1" BackgroundColor="Transparent" Clicked="NextSatp" TextColor="White"   />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

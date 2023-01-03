@@ -73,7 +73,9 @@ namespace BlueApp1.UIRemote
         private void MicroPhoneCode(object sender, EventArgs e)
         {
             if (speechToText != null)
+            {
                 speechToText.Start();
+            }
         }
 
         private void VoiceCode(string Code)
@@ -81,6 +83,11 @@ namespace BlueApp1.UIRemote
             // do Run Code
         }
 
-
+        private void ChanelsList(object sender, EventArgs e)
+        {
+            this.GOTO(new BlueApp1.EventsPage.ChannelsListPage());
+            //    <Button Text="القنوات المتاحة"  BackgroundColor="#75AE94" Clicked="AvailableChannels"  //Grid.Row="1"  TextColor="White" />
+            //   <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="1" />
+        }
     }
 }

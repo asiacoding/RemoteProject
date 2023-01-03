@@ -22,11 +22,11 @@ namespace BlueApp1.Droid
     internal class BlueServices : IBlueServices
     {
 
-        UUID uuid = UUID.FromString("00001101-0000-1000-8000-00805f9b34fb");
+        UUID uuid =
+            UUID.FromString("00001101-0000-1000-8000-00805f9b34fb");
+        private BluetoothAdapter adapter;
 
-        BluetoothAdapter adapter;
-
-        BluetoothSocket _Socket;
+       private BluetoothSocket _Socket;
 
         public bool IsConnect => _IsConnect;
 
@@ -73,13 +73,13 @@ namespace BlueApp1.Droid
             }
         }
 
-        public async void Connect(string deviceName = "IRremote")
+        public async Task<bool> Connect(string deviceName = "IRremote")
         {
             try
             {
                 if ((_Socket != null) && _Socket.IsConnected)
                 {
-                    return;
+                    return false;
                 }
 
                 device = (from bd in adapter.BondedDevices
@@ -96,11 +96,7 @@ namespace BlueApp1.Droid
                 }
 
                 await _Socket.ConnectAsync();
-
-             //   _IsConnect = _Socket.IsConnected;
-
-
-
+                return _Socket.IsConnected;
             }
             catch (Exception ex)
             {
@@ -118,8 +114,8 @@ namespace BlueApp1.Droid
                 {
                     Toast.MakeText(MainActivity.MainActivitY, ex2.Message, ToastLength.Long);
                 }
-             //   _IsConnect = false;
                 _ = Toast.MakeText(MainActivity.MainActivitY.ApplicationContext, ex.Message, ToastLength.Long);
+                return false;
             }
         }
 

@@ -32,8 +32,7 @@
                         <!-- List Chanels -->
                         <ImageButton Source="ListChanels"
                                      BackgroundColor="#75AE94"
-                                     HeightRequest="50" />
-
+                                     HeightRequest="50" Clicked="ChanelsList" />
 
 
                     </StackLayout>

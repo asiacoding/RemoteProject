@@ -7,22 +7,33 @@
             <ScrollView>
                 <StackLayout>
 
-                    <StackLayout Padding="0" Spacing="0">
-                        <Frame Padding="20" BackgroundColor="#75AE94" CornerRadius="0"  >
-                            <Label Text="اضافة مشروع جديد" LineBreakMode="WordWrap" TextColor="White" HorizontalOptions="Center"  />
-                        </Frame>
-                    </StackLayout>
+                  
+
+                    <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="4"   >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="اضافة مشروع جديد"
+                                   Grid.Column="0" 
+                                   LineBreakMode="WordWrap"
+                                   TextColor="White"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"  />
+                            <Button Text="انشاء" Grid.Column="1" BackgroundColor="#75AE94" Clicked="NextSatp" TextColor="White"   />
+                        </Grid>
+                    </Frame>
+
 
                     <StackLayout>
+                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
+                        <Editor  />
                     </StackLayout>
                     
                 </StackLayout>
             </ScrollView>
 
-            <Grid VerticalOptions="EndAndExpand" ColumnSpacing="1" Padding="1">
-                <Button Text="انشاء" Grid.Column="0" BackgroundColor="#75AE94" Clicked="NextSatp" TextColor="White"   />
-                <Button Text="كيفية الاضافة" Grid.Column="1" BackgroundColor="#75AE94" TextColor="White"   />
-            </Grid>
 
         </StackLayout>
     </ContentPage.Content>
