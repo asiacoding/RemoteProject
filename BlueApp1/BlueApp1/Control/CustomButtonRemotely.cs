@@ -53,12 +53,12 @@ namespace BlueApp1.Control
                         if (Re.Value)
                         {
                             ServicesBLUE.Write("A;");
-                            var Get = await ServicesBLUE.BluetoothListeningforOne(); // Fix Error Looping Button Value 0Xfffffff <<< From Hardware
-                            if (!string.IsNullOrEmpty(Get))
+                            var DataRes = await ServicesBLUE.BluetoothListeningforOne(); // Fix Error Looping Button Value 0Xfffffff <<< From Hardware
+                            if (!string.IsNullOrEmpty(DataRes))
                             {
                                 RemoteButtonModels models = new RemoteButtonModels()
                                 {
-                                    Codes = Get,
+                                    Codes = DataRes,
                                     Name = Name,
                                     Guid = MT.SystemGuid,
                                     ModelRemote = ""
@@ -66,11 +66,16 @@ namespace BlueApp1.Control
                                 Models.Standard.Set.RemotesButton SetNewButton = new Models.Standard.Set.RemotesButton();
                                 if (SetNewButton.Add(models))
                                 {
-                                    var CheckNow = await MainPageOwner.SandAlert("هذا رائع لقد تم حفظ امر جديد هل تريد التجربه الان ؟", new[] { "لا", "نعم" });
+                                    bool? CheckNow = await MainPageOwner.SandAlert(
+                                        "هذا رائع لقد تم حفظ امر جديد هل تريد التجربه الان ؟", new[]
+                                    {
+                                        "لا",
+                                        "نعم"
+                                    });
 
                                     if (CheckNow.Value)
                                     {
-                                        ServicesBLUE.Write(Get + ";");
+                                        ServicesBLUE.Write(DataRes + ";");
                                     }
                                 }
                                 else

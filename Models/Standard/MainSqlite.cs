@@ -14,13 +14,10 @@ namespace Models.Standard
         {
             get
             {
-                if (_DataBase != null)
-                {
-                    return _DataBase;
-                }
+                if (_DataBase != null) { return _DataBase; }
 
                 _DataBase = GetMainFileDatabase();
-
+                
                 return _DataBase;
             }
         }
@@ -28,16 +25,11 @@ namespace Models.Standard
         private static SQLite.SQLiteConnection _DataBase { set; get; }
         private static SQLite.SQLiteConnection GetMainFileDatabase()
         {
-
-            //_ = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string applicationFolderPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "DataRemotely");
             _ = System.IO.Directory.CreateDirectory(applicationFolderPath);
             string databaseFileName = Path.Combine(applicationFolderPath, "Main.AsiaFile");
-
             var _API = new SQLiteConnection(databaseFileName, SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite);
             LoadModels(_API);
-
-
             return _API;
         }
 
@@ -46,6 +38,7 @@ namespace Models.Standard
         {
             Sql.CreateTable<RemoteButtonModels>();
             Sql.CreateTable<RemoteProjectModels>();
+            Sql.CreateTable<LanguageModel>();
         }
     }
 }

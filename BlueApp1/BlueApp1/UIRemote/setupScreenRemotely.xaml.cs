@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace BlueApp1.UIRemote
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddingNewProject : ContentPage
+    public partial class setupScreenRemotely : ContentPage
     {
-        public AddingNewProject()
+        public setupScreenRemotely()
         {
             InitializeComponent();
-        }
-
-        private void NextSatp(object sender, EventArgs e)
-        {
-            this.GOTO(new UIRemote.setupScreenRemotely());
         }
     }
 }

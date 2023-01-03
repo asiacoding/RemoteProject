@@ -34,12 +34,12 @@
                                      BackgroundColor="#75AE94"
                                      HeightRequest="50" />
 
-                  
-                        
+
+
                     </StackLayout>
                 </ScrollView>
-                
-                
+
+
 
                 <!-- Control -->
                 <ScrollView VerticalOptions="EndAndExpand"  BackgroundColor="#75AE94" >
@@ -90,7 +90,6 @@
                     </Grid>
                 </ScrollView>
 
-
                 <!-- Keys -->
                 <ScrollView Margin="0,-7,0,0"  BackgroundColor="#75AE94" x:Name="KeyboardPanel" >
                     <Grid BackgroundColor="#75AE94" Padding="10">
@@ -126,13 +125,13 @@
                                                        Grid.Column="2" 
                                                        Source="noSound" />
 
-                        <control:CustomButtonRemotely  CornerRadius="50"
+                        <control:CustomButtonRemotely CornerRadius="50"
                                                        Grid.Row="1" 
                                                        x:Name="cb_1"
                                                        Grid.Column="0" 
                                                        Source="_1" />
 
-                        <control:CustomButtonRemotely  CornerRadius="50" 
+                        <control:CustomButtonRemotely CornerRadius="50" 
                                                        Grid.Row="1" 
                                                        x:Name="cb_2"
                                                        Grid.Column="1" 
@@ -167,7 +166,7 @@
                                                       x:Name="cb_7"
                                                       Grid.Column="0" 
                                                       Source="_7" />
-                        
+
                         <control:CustomButtonRemotely CornerRadius="50" 
                                                       Grid.Row="3" 
                                                       x:Name="cb_8"

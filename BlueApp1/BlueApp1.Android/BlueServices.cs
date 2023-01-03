@@ -173,8 +173,9 @@ namespace BlueApp1.Droid
                 byte[] buffer = Encoding.ASCII.GetBytes(name);
                 await _Socket.OutputStream.WriteAsync(buffer, 0, buffer.Length);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                //ex.Message = "";
             }
         }
 
@@ -187,31 +188,34 @@ namespace BlueApp1.Droid
         {
             try
             {
-
+                #region Check Connect is Acdvble or Disconnect
                 if ((_Socket == null) || !_Socket.IsConnected)
                 {
-                    if (ClosedConnecting != null)
-                    {
-                        ClosedConnecting.Invoke(this, "No conenct App");
-                    }
+                    if (ClosedConnecting != null) ClosedConnecting.Invoke(this, "No conenct App");
                     return null;
                 }
-
+                #endregion
+                
+                #region Data
                 string Data = "";
                 byte[] buffer = new byte[50];
                 bool OutOfMainBlock = false;
+                #endregion
 
                 while (_Socket.IsConnected)
                 {
                     _ = await _Socket.InputStream.ReadAsync(buffer, 0, buffer.Length);
+  
                     foreach (byte item in buffer)
                     {
                         string Output = ConvertToString ? Convert.ToChar(item).ToString() : item.ToString();
+
                         if (Output == ";" || Output == "\0" || item == 59)
                         {
                             OutOfMainBlock = true;
                             break;
                         }
+
                         Data += Output;
                     }
 
@@ -220,12 +224,13 @@ namespace BlueApp1.Droid
                         buffer = new byte[50];
                         continue;
                     }
-
+                    
                     if (OutOfMainBlock)
                     {
                         break;
                     }
                 }
+
                 return Data;
             }
             catch (Exception ex)

@@ -1,9 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlueApp1.UIRemote.AddingNewProject">
+             x:Class="BlueApp1.UIRemote.AddingNewProject" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
     <ContentPage.Content>
         <StackLayout>
+            <ScrollView>
+                <StackLayout>
+
+                    <StackLayout Padding="0" Spacing="0">
+                        <Frame Padding="20" BackgroundColor="#75AE94" CornerRadius="0"  >
+                            <Label Text="اضافة مشروع جديد" LineBreakMode="WordWrap" TextColor="White" HorizontalOptions="Center"  />
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout>
+                    </StackLayout>
+                    
+                </StackLayout>
+            </ScrollView>
+
+            <Grid VerticalOptions="EndAndExpand" ColumnSpacing="1" Padding="1">
+                <Button Text="انشاء" Grid.Column="0" BackgroundColor="#75AE94" Clicked="NextSatp" TextColor="White"   />
+                <Button Text="كيفية الاضافة" Grid.Column="1" BackgroundColor="#75AE94" TextColor="White"   />
+            </Grid>
 
         </StackLayout>
     </ContentPage.Content>

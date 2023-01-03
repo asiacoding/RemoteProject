@@ -75,5 +75,19 @@ namespace BlueApp1
             Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
             DeleteObjRemote.DeleteAll("1234");//Save Codes
         }
+
+        private void AddNewProject(object sender, EventArgs e)
+        {
+            //if (ServicesBLUE.IsConnect)
+            //{
+            this.GOTO(new UIRemote.AddingNewProject());
+            //}
+            //else
+            //{
+            //    ///Please contact my device first
+            //   // SystemFunction.ClassicMessage();
+            //    Notes.Text = "يرجى الاتصال بجهاز أولا";
+            //}
+        }
     }
 }

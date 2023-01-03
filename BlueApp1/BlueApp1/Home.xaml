@@ -34,8 +34,11 @@
                         <Button Text="لوحات التحكم" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="1" />
                         <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="pincode_keyboard" Grid.Row="1" />
                         <!-- -->
-                        <Button Text="حذف البيانات"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="2" />
+                        <Button Text="مشروع جديد"  BackgroundColor="#75AE94" Clicked="AddNewProject"  Grid.Row="2" />
                         <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="2" />
+                        <!-- -->
+                        <Button Text="الاعداد"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="3" />
+                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="3" />
             
                     </Grid>
                 </StackLayout>
