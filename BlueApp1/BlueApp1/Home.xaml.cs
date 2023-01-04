@@ -20,13 +20,9 @@ namespace BlueApp1
             InitializeComponent();
             if (ServicesBLUE == null)
                 ServicesBLUE = DependencyService.Get<IBlueServices>();
-
-   
             ConnectBtn.Text = ServicesBLUE.IsConnect ?
                 "متصل" :
                 "اتصال";
-
-
         }
 
         private async void opneControl(object sender, EventArgs e)
@@ -39,14 +35,14 @@ namespace BlueApp1
                 }
                 else
                 {
-                    bool CheckConnecting = await ServicesBLUE.Connect();
-                    Notes.Text = CheckConnecting ?
-                        "يرجى الاتصال بجهاز أولا" :
-                        "حدث خطا الرجاء المحاولة مره أخرى";
-                    ConnectBtn.Text = CheckConnecting ?
-                        "متصل" :
-                        "حاول مجددا";
+                    bool? ConnectUsers = await this.SendAlert(M: "انت غير متصل بجهاز الان هل تريد الاتصال ؟", Questions: new[] { "لا", "اتصل" });
+                    if (ConnectUsers.Value)
+                    {
+                        bool CheckConnecting = await ServicesBLUE.Connect();
+                        Notes.Text = CheckConnecting ? "لقد تم استرجاع الاتصال بنجاح" : "حدث خطا الرجاء المحاولة مره أخرى";
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -58,25 +54,17 @@ namespace BlueApp1
         {
             try
             {
-                if (!ServicesBLUE.IsConnect) //Check is connect or no
-                {
-                    bool CheckConnecting = await ServicesBLUE.Connect();
-                    Notes.Text = CheckConnecting ?
-                        "تم الاتصال بجهاز" :
-                        "حدث خطا الرجاء المحاولة مره أخرى";
-                    ConnectBtn.Text = CheckConnecting ?
-                        "متصل" :
-                        "حاول مجددا";
-
-                    //  ServicesBLUE.Connect(); Notes.Text = "";
-                }
-                else
-                {
-                    Notes.Text = "انت بالفعل على متصل";
-                }
+                bool CheckConnecting = await ServicesBLUE.Connect();
+                Notes.Text = CheckConnecting ?
+                    "تم الاتصال بجهاز" :
+                    "حدث خطا الرجاء المحاولة مره أخرى";
+                ConnectBtn.Text = CheckConnecting ?
+                    "متصل" :
+                    "حاول مجددا";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                this.SendAlert(ex.Message);
             }
         }
 
@@ -93,7 +81,6 @@ namespace BlueApp1
 
         private void AvailableChannels(object sender, EventArgs e)
         {
-
         }
     }
 }

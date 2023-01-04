@@ -1,47 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control"
-             x:Class="BlueApp1.UIRemote.RemoteUI"  BackgroundColor="#75AE94" NavigationPage.HasNavigationBar="False">
+             x:Class="BlueApp1.UIRemote.RemoteUI"  BackgroundColor="#fff" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="0">
 
 
-                <!-- Ok -->
+                <!-- Ok 
+                -->
                 <ScrollView Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Padding="5">
-                    <StackLayout Orientation="Horizontal" HeightRequest="50" >
+                
                         <!-- OK Button -->
 
-                        <!-- Keyboard -->
+
+
+
+
+
+
+
+                    <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="2,9,2,8"    >
+                        <StackLayout Orientation="Horizontal" HeightRequest="50" HorizontalOptions="Center" >
+
+
+                            <!-- Keyboard 
+                        -->
                         <ImageButton BackgroundColor="#75AE94"
                                      HeightRequest="50" 
                                      Clicked="SetKeyboard"
                                      Source="pincode_keyboard" />
 
-                        <!-- Microphone -->
+                            <!-- Microphone 
+                        -->
                         <ImageButton Source="microphone" 
                                      BackgroundColor="#75AE94"
                                      HeightRequest="50" Clicked="MicroPhoneCode" />
 
-                        <!-- EDIT -->
-                        <ImageButton Source="edit" 
+                            <!-- EDIT  -->
+                            <ImageButton Source="edit" 
                                      BackgroundColor="#75AE94"
-                                     HeightRequest="50"
+                                     HeightRequest="50" Clicked="restAPp"
                                      />
-
-                        <!-- List Chanels -->
-                        <ImageButton Source="ListChanels"
-                                     BackgroundColor="#75AE94"
+                            <!-- List Chanels -->
+                            <ImageButton Source="ListChanels"
+                                     BackgroundColor="#75AE10"
                                      HeightRequest="50" Clicked="ChanelsList" />
-
-
                     </StackLayout>
+                        </Frame>
                 </ScrollView>
+
+         
 
 
 
                 <!-- Control -->
-                <ScrollView VerticalOptions="EndAndExpand"  BackgroundColor="#75AE94" >
+                <ScrollView VerticalOptions="EndAndExpand"  BackgroundColor="Transparent" >
                     <Grid Grid.ColumnSpan="3"
                           Grid.Row="0"
                           ColumnSpacing="-4"
@@ -58,10 +72,10 @@
                                                        Source="up"  
                                                        Padding="5" 
                                                        x:Name="cb_up"
-                                                       BackgroundColor="#75AE94" />
+                                                       BackgroundColor="Transparent" />
                         <!-- Left -->
                         <control:CustomButtonRemotely Grid.Row="1" 
-                                                      BackgroundColor="#75AE94"
+                                                      BackgroundColor="Transparent"
                                                       x:Name="cb_left"
                                                       Padding="5"
                                                       Source="left" />
@@ -70,19 +84,19 @@
                                                       x:Name="cb_ok"
                                                       Grid.Column="1"   
                                                       Padding="5" 
-                                                      BackgroundColor="#75AE94"
+                                                      BackgroundColor="Transparent"
                                                       Source="ok" />
                         <!-- Right -->
                         <control:CustomButtonRemotely Grid.Row="1" 
                                                       x:Name="cb_right"
                                                       Grid.Column="2"    
-                                                      BackgroundColor="#75AE94"
+                                                      BackgroundColor="Transparent"
                                                       Source="right" 
                                                       Padding="5" />
                         <!-- Down -->
                         <control:CustomButtonRemotely Grid.Row="2" 
                                                       x:Name="cb_down"
-                                                      BackgroundColor="#75AE94"
+                                                      BackgroundColor="Transparent"
                                                       Padding="5"
                                                       Grid.ColumnSpan="3" 
                                                       Source="down" />
@@ -90,8 +104,8 @@
                 </ScrollView>
 
                 <!-- Keys -->
-                <ScrollView Margin="0,-7,0,0"  BackgroundColor="#75AE94" x:Name="KeyboardPanel" >
-                    <Grid BackgroundColor="#75AE94" Padding="10">
+                <ScrollView Margin="0,-7,0,0"  BackgroundColor="Transparent" x:Name="KeyboardPanel" >
+                    <Grid BackgroundColor="Transparent" Padding="10">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60" />
@@ -172,7 +186,7 @@
                                                       Grid.Column="1" 
                                                       Source="_8" />
 
-                        <control:CustomButtonRemotely CornerRadius="50"
+                        <control:CustomButtonRemotely CornerRadius="50" BackgroundColor="Transparent"
                                                       Grid.Row="3" 
                                                       x:Name="cb_9"
                                                       Grid.Column="2" 

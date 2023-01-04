@@ -4,6 +4,7 @@ using System.Text;
 using Xamarin.Forms;
 using BlueApp1.Extensions;
 using Models.Base;
+using System.Threading.Tasks;
 
 namespace BlueApp1.Control
 {
@@ -14,6 +15,7 @@ namespace BlueApp1.Control
         {
             ServicesBLUE = DependencyService.Get<IBlueServices>();
             this.Clicked += CustomButtonRemotely_Clicked;
+            BackgroundColor = Color.Transparent;
         }
 
         //لا يوجد اي امر هنا هل تريد اضافة واحد ؟
@@ -25,7 +27,7 @@ namespace BlueApp1.Control
         //It's Normal Pad
         public string ProjectGuid { set; get; }
         public string TagProject { set; get; }
-
+        private string DataRes { set; get; }
         private async void CustomButtonRemotely_Clicked(object sender, EventArgs e)
         {
             if (IsSystemPad)
@@ -48,45 +50,11 @@ namespace BlueApp1.Control
                     if (MainPageOwner != null)
                     {
                         //                       
-                        var Re = await MainPageOwner.SandAlert("لا يوجد اي امر هنا هل تريد اضافة امر ؟", new[] { "لا", "نعم" });
+                        var Re = await MainPageOwner.SendAlert("لا يوجد اي امر هنا هل تريد اضافة امر ؟", new[] { "لا", "نعم" });
 
                         if (Re.Value)
                         {
-                            ServicesBLUE.Write("A;");
-                            var DataRes = await ServicesBLUE.BluetoothListeningforOne(); // Fix Error Looping Button Value 0Xfffffff <<< From Hardware
-                            if (!string.IsNullOrEmpty(DataRes))
-                            {
-                                RemoteButtonModels models = new RemoteButtonModels()
-                                {
-                                    Codes = DataRes,
-                                    Name = Name,
-                                    Guid = MT.SystemGuid,
-                                    ModelRemote = ""
-                                };
-                                Models.Standard.Set.RemotesButton SetNewButton = new Models.Standard.Set.RemotesButton();
-                                if (SetNewButton.Add(models))
-                                {
-                                    bool? CheckNow = await MainPageOwner.SandAlert(
-                                        "هذا رائع لقد تم حفظ امر جديد هل تريد التجربه الان ؟", new[]
-                                    {
-                                        "لا",
-                                        "نعم"
-                                    });
-
-                                    if (CheckNow.Value)
-                                    {
-                                        ServicesBLUE.Write(DataRes + ";");
-                                    }
-                                }
-                                else
-                                {
-                                    //Add Code 
-                                }
-                            }
-                            else
-                            {
-                                MainPageOwner.SandAlert("لم تنجح العملية لسبب غير معروف حاول مرة اخرى ");
-                            }
+                            await CheckCodes(Name);
                         }
                     }
                 }
@@ -94,7 +62,7 @@ namespace BlueApp1.Control
             else
             {
                 Models.Standard.Get.RemotesButton remotesButton = new Models.Standard.Get.RemotesButton();
-                Models.Base.RemoteButtonModels BinKey = remotesButton.SystemPad(PAD);
+                RemoteButtonModels BinKey = remotesButton.SystemPad(PAD);
                 if (ServicesBLUE != null)
                 {
                     ServicesBLUE.Write(BinKey.Codes + ";");
@@ -104,6 +72,64 @@ namespace BlueApp1.Control
                     //Add New Putton
                 }
             }
+        }
+
+        public async Task CheckCodes(string Name)
+        {
+            ServicesBLUE.Write("A;");
+            DataRes = await ServicesBLUE.BluetoothListeningforOne(); // Fix Error Looping Button Value 0Xfffffff <<< From Hardware
+            if (!string.IsNullOrEmpty(DataRes))
+            {
+                try
+                {
+                    long Code = Convert.ToInt64(DataRes);
+                    if (Code > 0 && Code < 4294967295)
+                    {
+                        RemoteButtonModels models = new RemoteButtonModels()
+                        {
+                            Codes = Code.ToString(),
+                            Name = Name,
+                            Guid = MT.SystemGuid,
+                            ModelRemote = ""
+                        };
+                        Models.Standard.Set.RemotesButton SetNewButton = new Models.Standard.Set.RemotesButton();
+                        if (SetNewButton.Add(models))
+                        {
+
+                            bool? CheckNow = await MainPageOwner.SendAlert("هذا رائع لقد تم حفظ امر جديد هل تريد التجربه الان ؟", new[]
+                            {
+                                        "لا",
+                                        "نعم"
+                                    });
+
+                            if (CheckNow.Value)
+                            {
+                                ServicesBLUE.Write(DataRes + ";");
+                            }
+
+                        }
+                        else
+                        {
+                            MainPageOwner.SendAlert("لم تنجح العملية لسبب غير معروف حاول مرة اخرى ");
+                        }
+                    }
+                    else
+                    {
+                        await CheckCodes(Name); //Looping !!!
+                    }
+                }
+                catch (Exception)
+                {
+                    await CheckCodes(Name); //Looping !!!
+                }
+            }
+            else
+            {
+                MainPageOwner.SendAlert("لم تنجح العملية لسبب غير معروف حاول مرة اخرى ");
+            }
+      
+
+
         }
 
     }

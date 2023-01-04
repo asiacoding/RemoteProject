@@ -6,5 +6,6 @@
 	void setup(); \
 	void AddNewSagnle(); \
 	void SetSagnle(); \
+	void RestartApp(); \
 	void loop(); \
 

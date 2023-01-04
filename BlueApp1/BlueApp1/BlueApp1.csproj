@@ -28,7 +28,7 @@
     <EmbeddedResource Update="UIRemote\AddingNewProject.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="UIRemote\RemoteUI.xaml">
+    <EmbeddedResource Update="EventsPage\RemoteUI.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="UIRemote\Setting.xaml">

@@ -10,7 +10,7 @@ namespace BlueApp1
         {
             InitializeComponent();
 
-            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(
+            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense( 
             //   "NjI1MDYzQDMyMzAyZTMxMmUzMEVRNzg2VU54bEp3OXVlM2tTZXdKb3BQWWREa1UwRUpZY3NGVmlkRUNVQUk9");
 
             MainPage = new NavigationPage(new Home());

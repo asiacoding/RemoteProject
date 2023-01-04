@@ -203,7 +203,7 @@ namespace BlueApp1
         public static bool PageIsBusy(this bool m, Xamarin.Forms.Page page = null)
         {
             if (page != null && m)
-                page.SandAlert
+                page.SendAlert
                     ("There is another process in progress");
 
             return m;
@@ -382,9 +382,9 @@ namespace BlueApp1
         //    return Mon[_month];
         //}
 
-        public static void SandAlert(this Xamarin.Forms.Page T, string M)
+        public static void SendAlert(this Xamarin.Forms.Page T, string M)
         {
-            T.DisplayAlert("CRM Alert", M, "back");
+            T.DisplayAlert("system alert", M, "back");
         }
 
         /// <summary>
@@ -392,13 +392,13 @@ namespace BlueApp1
         /// </summary>
         /// <param name="T"></param>
         /// <param name="M"></param>
-        /// <param name="question">need 2 string Arry index 0 = No , and index 1 = yes </param>
+        /// <param name="Questions">need 2 string Arry index 0 = No , and index 1 = yes </param>
         /// <returns></returns>
-        public static async Task<bool?> SandAlert(this Xamarin.Forms.Page T, string M, string[] question)
+        public static async Task<bool?> SendAlert(this Xamarin.Forms.Page T, string M, string[] Questions)
         {
-            if (question.Length == 2)
+            if (Questions.Length == 2)
             {
-                return await T.DisplayAlert("", M, question[1], question[0]);
+                return await T.DisplayAlert("system alert", M, Questions[1], Questions[0]);
             }
             else
             {

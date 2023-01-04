@@ -89,5 +89,11 @@ namespace BlueApp1.UIRemote
             //    <Button Text="القنوات المتاحة"  BackgroundColor="#75AE94" Clicked="AvailableChannels"  //Grid.Row="1"  TextColor="White" />
             //   <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="1" />
         }
+
+        private void restAPp(object sender, EventArgs e)
+        {
+            IBlueServices ServicesBLUE = DependencyService.Get<IBlueServices>();
+            ServicesBLUE.Write("ResetApp;");
+        }
     }
 }
