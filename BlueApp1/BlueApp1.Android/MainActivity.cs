@@ -1,30 +1,42 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms;
 using Android.Speech;
-using static BlueApp1.interface_enum.SpeechToText;
 using Android.Content;
+using Android.Views;
+using BlueApp1.interface_enum;
 
 namespace BlueApp1.Droid
 {
-    [Activity(Label = "Super Remo", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity , IMessageSender
+    [Activity(Label = "Super Remo", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IMessageSender
     {
 
         public static Activity MainActivitY { private set; get; }
-        
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             MainActivitY = this;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            LoadApplication(new Application());
         }
+
+
+        public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e)
+        {
+            MessagingCenter.Send(Xamarin.Forms.Application.Current, "OpenPage", keyCode.ToString());
+            return base.OnKeyDown(keyCode, e);
+        }
+
+
+
+
+
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -36,6 +48,9 @@ namespace BlueApp1.Droid
         private readonly int VOICE = 10;
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
+
+
+
             if (requestCode == VOICE)
             {
                 if (resultCode == Result.Ok)
@@ -48,7 +63,7 @@ namespace BlueApp1.Droid
                     }
                     else
                     {
-                        MessagingCenter.Send<IMessageSender, string>(this, "STT", "No input");
+                        MessagingCenter.Send<IMessageSender, string>(this, "STT", null);
                     }
 
                 }

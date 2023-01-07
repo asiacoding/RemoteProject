@@ -5,6 +5,17 @@ using Xamarin.Forms;
 
 namespace BlueApp1.interface_enum
 {
+
+    public interface ISpeechToText
+    {
+        void StartSpeechToText();
+    }
+    public interface IMessageSender
+    {
+    }
+
+
+
     public class SpeechToText
     {
         public void Start()
@@ -20,14 +31,7 @@ namespace BlueApp1.interface_enum
             }
         }
 
-        public interface ISpeechToText
-        {
-            void StartSpeechToText();
-           // void StopSpeechToText();
-        }
-        public interface IMessageSender
-        {
-        }
+      
 
         private readonly ISpeechToText _speechRecongnitionInstance;
 
@@ -112,6 +116,5 @@ namespace BlueApp1.interface_enum
     public class IMessageSenderDoWork
     {
         public delegate void EventHandler(string Res, string log);
-
     }
 }

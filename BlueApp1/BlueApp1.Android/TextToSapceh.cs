@@ -5,7 +5,7 @@ using Android.OS;
 using Android.Speech;
 using System.Collections.Generic;
 using System;
-using static BlueApp1.interface_enum.SpeechToText;
+using  BlueApp1.interface_enum;
 using Xamarin.Forms;
 using SpeechToText;
 

@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 
 namespace BlueApp1
 {
-    public partial class App : Application
+    public partial class Application : Xamarin.Forms.Application
     {
-        public App()
+        public Application()
         {
             InitializeComponent();
 

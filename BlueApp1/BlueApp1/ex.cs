@@ -382,9 +382,9 @@ namespace BlueApp1
         //    return Mon[_month];
         //}
 
-        public static void SendAlert(this Xamarin.Forms.Page T, string M)
+        public static void SendAlert(this Xamarin.Forms.Page T, string M,bool ShowTital = false)
         {
-            T.DisplayAlert("system alert", M, "back");
+            T.DisplayAlert(ShowTital ? "system alert" : "", M, "back");
         }
 
         /// <summary>

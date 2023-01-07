@@ -87,14 +87,9 @@ void loop()
 	{           
 		if (results.value > 0 && irreader.getProtocolString() != "UNKNOWN" && results.value < 4294967295) 
 		{
-			valueRemote = results.value; // Results of decoding are stored in result.value     
-			Serial.print("Code: "); Serial.print(results.value); //prints the value a a button press     
-			Serial.print(" , "); //prints the value a a button press     
-			Serial.print("Protocol is : "); Serial.println(irreader.getProtocolString());
-      
-			//String Output = String(results.value, DEC);
-			//bt.write(Output.c_str());
-			//bt.write(';');
+			valueRemote = results.value; /* Results of decoding are stored in result.value */
+			Serial.print("Code: "); Serial.print(results.value); /* prints the value a a button press*/     
+			Serial.print(" , "); /*prints the value a a button press */  Serial.print("Protocol is : "); Serial.println(irreader.getProtocolString());
 		}
 		irreader.resume();
 	}
@@ -113,13 +108,14 @@ void loop()
 			//Serial.println();
 			//Serial.print("Recave Code : ");
 			//Serial.println(Data);
-			if (Data == "Check") bt.write("Yes;"); // Is Online
-			else if(Data == "Claer") Serial.flush();
-			else if(Data == "ResetApp")
-			{
-				RestartApp();
-			}
-			else if(Data == "A") 
+//			if (Data == "Check") bt.write("Yes;"); // Is Online
+//			else if(Data == "Claer") Serial.flush();
+//			else if(Data == "ResetApp")
+//			{
+//				RestartApp();
+//			}
+//			else
+			if(Data == "A") 
 			{
 				AddNewSagnle();
 			} // Get Data

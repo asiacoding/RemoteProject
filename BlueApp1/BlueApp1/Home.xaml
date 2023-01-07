@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlueApp1.Home" BackgroundColor="#fff" NavigationPage.HasNavigationBar="False">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control"
+             x:Class="BlueApp1.Home" BackgroundColor="#fff"
+             NavigationPage.HasNavigationBar="False" >
     <ContentPage.Content>
         <StackLayout>
 
 
 
 
-            <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="4"   >
+            <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="7"   >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -31,32 +32,65 @@
 
             <ScrollView>
                 <StackLayout>
+                    <Grid Padding="10">
+                        <control:Views1 Grid.Column="0"
+                                        Grid.Row="0" 
+                                        Text="لوحات التحكم" 
+                                        ClickedControl="opneControl"
+                                        Image="pincode_keyboard"  />
+                        
+                        <control:Views1 Grid.Column="1" 
+                                        Grid.Row="0"
+                                        Text="مشروع جديد" 
+                                        Image="add" 
+                                        ClickedControl="AddNewProject" />
+                        
+                        <control:Views1 Grid.Column="2" 
+                                        Grid.Row="0"
+                                        Text="الاعداد" 
+                                        Image="control"
+                                        ClickedControl="GetDataFromUart" />
+                        
+                        <control:Views1 Grid.Column="0" 
+                                        Grid.Row="1" 
+                                        Image="control"
+                                        Text="حذف الريموتات الموجدة"
+                                        x:Name="LastButton" 
+                                        ClickedControl="GetDataFromUart" />
+                        
+                        <control:Views1 Grid.Column="1" 
+                                        Grid.Row="1" 
+                                        Image="power"
+                                        Text="خروج"
+                                        x:Name="ExistApp" 
+                                        ClickedControl="GetDataFromUart" />
 
-                    <Grid Padding="5" ColumnSpacing="0" RowSpacing="2" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                            <RowDefinition Height="50" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="50"/>
-                        </Grid.ColumnDefinitions>
-                        <!-- -->
-                        <Button Text="لوحات التحكم" x:Name="ControlMenu" BackgroundColor="#75AE94" Clicked="opneControl"  Grid.Row="0"  TextColor="White" />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="pincode_keyboard" Grid.Row="0" />
-                        <!-- -->
-                        <Button Text="مشروع جديد"  BackgroundColor="#75AE94" Clicked="AddNewProject"  Grid.Row="1"  TextColor="White" />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="1" />
-                        <!-- -->
-                        <Button Text="الاعداد"  BackgroundColor="#75AE94" Clicked="GetDataFromUart"  Grid.Row="2"  TextColor="White" />
-                        <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="2" />
-            
+                        <!--
+                        <control:Views1 Grid.Column="1" Grid.Row="1" />
+                        <control:Views1  Grid.Column="1" Grid.Row="1" />
+                        <control:Views1 Grid.Column="0" Grid.Row="2" />
+                        <control:Views1 Grid.Column="1" Grid.Row="2" />
+                        <control:Views1  Grid.Column="1" Grid.Row="2" />
+                        -->
                     </Grid>
                 </StackLayout>
             </ScrollView>
-          
-            
 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <Label BackgroundColor="Transparent" TextColor="Black" x:Name="Notes" Text="" VerticalOptions="EndAndExpand" HorizontalTextAlignment="Center" Margin="5"  />
 
         </StackLayout>

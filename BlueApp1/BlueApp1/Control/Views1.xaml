@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlueApp1.Control.Views1" BackgroundColor="#75AE94">
+  <ContentView.Content >
+        <Grid HeightRequest="110" BackgroundColor="Transparent" Padding="0"   >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ClickEventEnterButton"  />
+            </Grid.GestureRecognizers>
+
+            <ImageButton x:Name="ImgImageingControl" 
+                         Grid.Row="0"  
+                         BackgroundColor="Transparent" 
+                         Clicked="ClickEventEnterButton" />
+
+            <ScrollView Orientation="Horizontal" Grid.Row="1">
+                
+            <Button x:Name="btnDownText" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="ClickEventEnterButton" 
+                    BackgroundColor="Transparent"  />
+            </ScrollView>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

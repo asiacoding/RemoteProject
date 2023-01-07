@@ -205,7 +205,7 @@ namespace BlueApp1.Droid
                 bool OutOfMainBlock = false;
                 #endregion
 
-                _ = await Connect();
+            //    _ = await Connect();
 
                 while (_Socket.IsConnected)
                 {
@@ -229,10 +229,10 @@ namespace BlueApp1.Droid
                         buffer = new byte[50];
                         continue;
                     }
-
+                                                                                                                                                                                                                                                                                                                                                   
                     if (OutOfMainBlock)
                     {
-                        _Socket.Close();
+                     //   _Socket.Close();
                         break;
                     }
                 }

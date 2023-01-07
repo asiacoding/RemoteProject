@@ -8,5 +8,7 @@ namespace Models.Base
         public string Guid { set; get; }
         public string Description { set; get; }
         public string Name { set; get; }
+        public string Category { set; get; }
+        public int SizeButton { set; get; }
     }
 }

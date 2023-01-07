@@ -18,11 +18,19 @@ namespace BlueApp1
         public Home()
         {
             InitializeComponent();
+
             if (ServicesBLUE == null)
+            {
                 ServicesBLUE = DependencyService.Get<IBlueServices>();
-            ConnectBtn.Text = ServicesBLUE.IsConnect ?
-                "متصل" :
-                "اتصال";
+            }
+
+            ConnectBtn.Text = ServicesBLUE.IsConnect ? "متصل" : "اتصال";
+
+            MessagingCenter.Subscribe<Xamarin.Forms.Application, string>(Xamarin.Forms.Application.Current, "OpenPage", (snd, arg) =>
+            {
+                Device.BeginInvokeOnMainThread(() => { LastButton.Text = arg; });
+            });
+
         }
 
         private async void opneControl(object sender, EventArgs e)
@@ -35,14 +43,22 @@ namespace BlueApp1
                 }
                 else
                 {
-                    bool? ConnectUsers = await this.SendAlert(M: "انت غير متصل بجهاز الان هل تريد الاتصال ؟", Questions: new[] { "لا", "اتصل" });
-                    if (ConnectUsers.Value)
+                    //   bool? ConnectUsers = await this.SendAlert(M: , Questions: new[] { "لا", "اتصل" });
+
+
+                    string action = await DisplayActionSheet("انت غير متصل بجهاز الان هل تريد الاتصال ؟", "إلغاء", null, "اتصال", "رجوع", "تخطى");
+
+
+                    if (action == "اتصال")
                     {
                         bool CheckConnecting = await ServicesBLUE.Connect();
                         Notes.Text = CheckConnecting ? "لقد تم استرجاع الاتصال بنجاح" : "حدث خطا الرجاء المحاولة مره أخرى";
                     }
+                    else if (action == "تخطى")
+                    {
+                        this.GOTO(TO: new RemoteUI());
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -79,8 +95,5 @@ namespace BlueApp1
             this.GOTO(new UIRemote.AddingNewProject());
         }
 
-        private void AvailableChannels(object sender, EventArgs e)
-        {
-        }
     }
 }

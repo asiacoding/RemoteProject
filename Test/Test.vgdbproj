@@ -13,13 +13,7 @@
       <SketchSubdirectory>sketches</SketchSubdirectory>
       <MainSketchFile>Test.ino</MainSketchFile>
       <RootSketchFolder>
-        <Subfolders>
-          <VirtualSourceFolder>
-            <Name>Data</Name>
-            <Subfolders />
-            <Files />
-          </VirtualSourceFolder>
-        </Subfolders>
+        <Subfolders />
         <Files>
           <string>Test.ino</string>
         </Files>

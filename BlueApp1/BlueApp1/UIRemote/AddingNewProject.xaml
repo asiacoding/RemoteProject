@@ -1,40 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control"
              x:Class="BlueApp1.UIRemote.AddingNewProject" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
     <ContentPage.Content>
-        <StackLayout>
-            <ScrollView>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="110" />
+            </Grid.RowDefinitions>
+            <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="0"  Grid.Row="0"  >
+                <Label Text="New Project"
+                               Grid.Column="0" 
+                               HeightRequest="50"
+                               FontSize="20"
+                               VerticalTextAlignment="Center"
+                               LineBreakMode="WordWrap"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center" />
+            </Frame>
+
+            <ScrollView Padding="5" Grid.Row="1">
                 <StackLayout>
-
-                  
-
-                    <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="4"   >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="90" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="اضافة مشروع جديد"
-                                   Grid.Column="0" 
-                                   LineBreakMode="WordWrap"
-                                   TextColor="White"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"  />
-                            <Button Text="انشاء" Grid.Column="1" BackgroundColor="#75AE94" Clicked="NextSatp" TextColor="White"   />
-                        </Grid>
-                    </Frame>
-
-
-                    <StackLayout>
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Editor  />
+                    <Editor x:Name="txtNameControl" Placeholder="Name Project Or Remote Name *" />
+                    <Editor x:Name="txtDesciptionsControl" Placeholder="Description" />
+                    <Editor x:Name="txtCategoryRemotes" Placeholder="category Projoect (TV,LED,Conditioners .. )"  />
+                    <Picker x:Name="picker"
+                                Title="Choose the size of the remote control *" >
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Small Remote (1 ~ 10 buttons)</x:String>
+                                <x:String>Middle Remote (10 ~ 40 buttons)</x:String>
+                                <x:String>Big Remote (More than 40 buttons)</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="New" 
+                                       Padding="3,6,0,6" />
+                        <Frame BackgroundColor="Black" Padding="3,6,3,6" CornerRadius="9">
+                            <StackLayout Orientation="Horizontal" Spacing="0">
+                                <Label Text="P" TextColor="White" />
+                                <Label Text="ro" TextColor="White"  />
+                                <Label Text="je" TextColor="White" />
+                                <Label Text="c" TextColor="Wheat"   />
+                                <Label Text="t" TextColor="White" />
+                            </StackLayout>
+                        </Frame>
+                        <Label Text="notes :"
+                               Padding="0,6,6,6" />
                     </StackLayout>
-                    
+
+                    <Label Text="Now create a new project and get the best performance, get new features and follow the new"
+                                   HorizontalTextAlignment="Center" 
+                                   x:Name="TitalControlsSelected" 
+                                   Padding="10" />
+
                 </StackLayout>
             </ScrollView>
 
 
-        </StackLayout>
+
+            <StackLayout   Grid.Row="2"
+                         Orientation="Horizontal" 
+                         Padding="5" >
+
+                <control:Views1 Grid.Column="1" 
+                                HorizontalOptions="StartAndExpand"
+                                Grid.Row="1" 
+                                Image="left"
+                                Text="back"
+                                BackgroundColor="#75AE94"
+                                ClickedControl="NextSatp" />
+                                
+                <control:Views1 Grid.Column="1" 
+                                HorizontalOptions="EndAndExpand"
+                                Grid.Row="1" 
+                                Image="right"
+                                Text="Next"
+                                x:Name="ExistApp" 
+                                BackgroundColor="#75AE94"
+                                ClickedControl="NextSatp" />
+
+            </StackLayout>
+                
+                
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
