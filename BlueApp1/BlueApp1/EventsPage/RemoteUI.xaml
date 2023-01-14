@@ -7,50 +7,53 @@
             <StackLayout Spacing="0">
 
 
+
+
+
+
+
+
                 <!-- Ok 
                 -->
-                <ScrollView Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Padding="5">
-                
-                        <!-- OK Button -->
+                <ScrollView Grid.Row="1" Grid.ColumnSpan="3" Orientation="Vertical" Padding="5">
+                    <StackLayout Orientation="Vertical">
+                        <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="2,9,2,8"    >
+                            <StackLayout Orientation="Horizontal"   >
 
 
-
-
-
-
-
-
-                    <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="2,9,2,8"    >
-                        <StackLayout Orientation="Horizontal" HeightRequest="50" HorizontalOptions="Center" >
-
-
-                            <!-- Keyboard 
+                                <!-- Keyboard 
                         -->
-                        <ImageButton BackgroundColor="#75AE94"
+                                <ImageButton BackgroundColor="#75AE94"
                                      HeightRequest="50" 
                                      Clicked="SetKeyboard"
                                      Source="pincode_keyboard" />
 
-                            <!-- Microphone 
+                                <!-- Microphone 
                         -->
-                        <ImageButton Source="microphone" 
+                                <ImageButton Source="microphone" 
                                      BackgroundColor="#75AE94"
                                      HeightRequest="50" Clicked="MicroPhoneCode" />
 
-                            <!-- EDIT  -->
-                            <ImageButton Source="edit" 
+                                <!-- EDIT  -->
+                                <ImageButton Source="edit" 
                                      BackgroundColor="#75AE94"
                                      HeightRequest="50" Clicked="restAPp"
                                      />
-                            <!-- List Chanels -->
-                            <ImageButton Source="ListChanels"
+                                <!-- List Chanels -->
+                                <ImageButton Source="ListChanels"
                                      BackgroundColor="#75AE10"
                                      HeightRequest="50" Clicked="ChanelsList" />
-                    </StackLayout>
-                        </Frame>
-                </ScrollView>
 
-         
+
+
+                            </StackLayout>
+                        </Frame>
+
+
+
+                    </StackLayout>
+                    <!-- OK Button -->
+                </ScrollView>
 
 
 
@@ -194,6 +197,27 @@
 
                     </Grid>
                 </ScrollView>
+
+
+
+                <ScrollView Padding="10" Orientation="Horizontal">
+
+                    <StackLayout Orientation="Horizontal" HeightRequest="90">
+
+
+
+                        <Frame Padding="4"  CornerRadius="20"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#75AE94" >
+                            <Button Text="OTher Button Remote"
+                                            BackgroundColor="#75AE94"
+                                            TextColor="White"  />
+                        </Frame>
+
+                    </StackLayout>
+                </ScrollView>
+
+
+
+
 
             </StackLayout>
 

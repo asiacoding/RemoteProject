@@ -30,52 +30,56 @@ namespace BlueApp1.Control
         private string DataRes { set; get; }
         private async void CustomButtonRemotely_Clicked(object sender, EventArgs e)
         {
-            if (IsSystemPad)
+            //if (IsSystemPad)
+            //{
+            Models.Standard.Get.RemotesButton remotesButton = new Models.Standard.Get.RemotesButton();
+            string Name = Source.ToString().Replace("File: ", "");
+            Models.Base.RemoteButtonModels BinKey = remotesButton.SystemPad(Name);
+            if (BinKey != null)
             {
-                Models.Standard.Get.RemotesButton remotesButton = new Models.Standard.Get.RemotesButton();
-                var Name = this.Source.ToString().Replace("File: ", "");
-                Models.Base.RemoteButtonModels BinKey = remotesButton.SystemPad(Name);
-                if (BinKey != null)
-                {
-                    if (ServicesBLUE != null)
-                    {
-                        ServicesBLUE.Write(BinKey.Codes + ";");
-                    }
-                    else
-                    {
-                    }
-                }
-                else
-                {
-                    if (MainPageOwner != null)
-                    {
-                        //                       
-                        var Re = await MainPageOwner.SendAlert("لا يوجد اي امر هنا هل تريد اضافة امر ؟", new[] { "لا", "نعم" });
-
-                        if (Re.Value)
-                        {
-                            await CheckCodes(Name);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                Models.Standard.Get.RemotesButton remotesButton = new Models.Standard.Get.RemotesButton();
-                RemoteButtonModels BinKey = remotesButton.SystemPad(PAD);
                 if (ServicesBLUE != null)
                 {
                     ServicesBLUE.Write(BinKey.Codes + ";");
                 }
                 else
                 {
-                    //Add New Putton
                 }
             }
+            else
+            {
+                if (MainPageOwner != null)
+                {
+                    bool? Re = await MainPageOwner.SendAlert("لا يوجد اي امر هنا هل تريد اضافة امر ؟", new[] { "لا", "نعم" });
+
+                    if (Re.Value)
+                    {
+                        await CheckCodes(Name);
+                    }
+                }
+            }
+            //}
+            //else
+            //{
+            //    Models.Standard.Get.RemotesButton remotesButton = new Models.Standard.Get.RemotesButton();
+            //    RemoteButtonModels BinKey = remotesButton.SystemPad(PAD);
+            //    if (ServicesBLUE != null)
+            //    {
+            //        ServicesBLUE.Write(BinKey.Codes + ";");
+            //    }
+            //    else
+            //    {
+            //        //Add New Putton
+            //    }
+            //}
         }
 
         public async Task CheckCodes(string Name)
         {
+            if ((ServicesBLUE == null) || !ServicesBLUE.IsConnect)
+            {
+                await ServicesBLUE.Connect();
+            }
+
             ServicesBLUE.Write("A;");
             DataRes = await ServicesBLUE.BluetoothListeningforOne(); // Fix Error Looping Button Value 0Xfffffff <<< From Hardware
             if (!string.IsNullOrEmpty(DataRes))
@@ -127,7 +131,7 @@ namespace BlueApp1.Control
             {
                 MainPageOwner.SendAlert("لم تنجح العملية لسبب غير معروف حاول مرة اخرى ");
             }
-      
+
 
 
         }

@@ -1,10 +1,5 @@
 ﻿using Models.Base;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,14 +11,14 @@ namespace BlueApp1.UIRemote
         public AddingNewProject()
         {
             InitializeComponent();
-            User = null;
+            RemoteModeling = null;
         }
-        static RemoteProjectModels User = null;
+        static RemoteProjectModels RemoteModeling = null;
         private void NextSatp(object sender, EventArgs e)
         {
 
-            if (User == null)
-                User = new RemoteProjectModels()
+            if (RemoteModeling == null)
+                RemoteModeling = new RemoteProjectModels()
                 {
                     Name = txtNameControl.Text,
                     Guid = Guid.NewGuid().ToString(),
@@ -34,7 +29,7 @@ namespace BlueApp1.UIRemote
 
             if (!string.IsNullOrEmpty(txtNameControl.Text) && picker.SelectedIndex != 0)
             {
-                this.GOTO(new SetupScreenRemotely(User));
+                this.GOTO(new SetupScreenRemotely(RemoteModeling));
             }
             else
             {

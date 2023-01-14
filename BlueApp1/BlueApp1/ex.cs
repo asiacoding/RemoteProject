@@ -18,7 +18,10 @@ namespace BlueApp1
 
     public static partial class Extension
     {
-
+        public static void DisplayErrorAlert(this Page This)
+        {
+            This.SendAlert("There was a problem, please try again");
+        }
         public static class StantderValue
         {
             //CRM.WebView.Layer.TempletPage.Report.CanStartReport.html
@@ -398,7 +401,7 @@ namespace BlueApp1
         {
             if (Questions.Length == 2)
             {
-                return await T.DisplayAlert("system alert", M, Questions[1], Questions[0]);
+                return await T.DisplayAlert("", M, Questions[1], Questions[0]);
             }
             else
             {

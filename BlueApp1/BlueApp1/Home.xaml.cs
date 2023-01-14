@@ -19,17 +19,20 @@ namespace BlueApp1
         {
             InitializeComponent();
 
+ 
             if (ServicesBLUE == null)
             {
-                ServicesBLUE = DependencyService.Get<IBlueServices>();
+                ServicesBLUE = DependencyService.Get<IBlueServices>(); // In Start App . Connect BT Def 
             }
 
-            ConnectBtn.Text = ServicesBLUE.IsConnect ? "متصل" : "اتصال";
+            RefLayoutConnectToBT();
 
-            MessagingCenter.Subscribe<Xamarin.Forms.Application, string>(Xamarin.Forms.Application.Current, "OpenPage", (snd, arg) =>
-            {
-                Device.BeginInvokeOnMainThread(() => { LastButton.Text = arg; });
-            });
+           // ConnectBtn.Text = ServicesBLUE.IsConnect ? "Connected" : "Connect"; // Check And Set Output to User ..
+
+            // MessagingCenter.Subscribe<Xamarin.Forms.Application, string>//(Xamarin.Forms.Application.Current, "OpenPage", (snd, arg) =>
+            // {
+            //     Device.BeginInvokeOnMainThread(() => { LastButton.Text = arg; });
+            // });
 
         }
 
@@ -43,18 +46,13 @@ namespace BlueApp1
                 }
                 else
                 {
-                    //   bool? ConnectUsers = await this.SendAlert(M: , Questions: new[] { "لا", "اتصل" });
-
-
-                    string action = await DisplayActionSheet("انت غير متصل بجهاز الان هل تريد الاتصال ؟", "إلغاء", null, "اتصال", "رجوع", "تخطى");
-
-
-                    if (action == "اتصال")
+                    string action = await DisplayActionSheet("You are not connected to a device now, do you want to connect ?", "cancel", null, "Connect", "Back", "skip");
+                    if (action == "Connect")
                     {
                         bool CheckConnecting = await ServicesBLUE.Connect();
-                        Notes.Text = CheckConnecting ? "لقد تم استرجاع الاتصال بنجاح" : "حدث خطا الرجاء المحاولة مره أخرى";
+                        RefLayoutConnectToBT();
                     }
-                    else if (action == "تخطى")
+                    else if (action == "skip")
                     {
                         this.GOTO(TO: new RemoteUI());
                     }
@@ -66,17 +64,30 @@ namespace BlueApp1
             }
         }
 
+        private void RefLayoutConnectToBT()
+        {
+            if(ServicesBLUE == null)
+            {
+                ConnectBtn.Text = "Connect";
+                Notes.Text = "";
+                return;
+            }
+
+            Notes.Text = ServicesBLUE.IsConnect ? "The connection has been restored successfully" : "An error occurred, please try again";
+            ConnectBtn.Text = ServicesBLUE.IsConnect ? "Connected" : "Connect";
+        }
+
         private async void Checkconnect(object sender, EventArgs e)
         {
             try
             {
                 bool CheckConnecting = await ServicesBLUE.Connect();
                 Notes.Text = CheckConnecting ?
-                    "تم الاتصال بجهاز" :
-                    "حدث خطا الرجاء المحاولة مره أخرى";
+                    "A device has been connected" :
+                    "An error occurred, please try again";
                 ConnectBtn.Text = CheckConnecting ?
-                    "متصل" :
-                    "حاول مجددا";
+                    "Connected" :
+                    "Try again";
             }
             catch (Exception ex)
             {
@@ -86,14 +97,32 @@ namespace BlueApp1
 
         private void GetDataFromUart(object sender, EventArgs e)
         {
-            Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
-            DeleteObjRemote.DeleteAll("1234");//Save Codes
+        //    Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
+        //    DeleteObjRemote.DeleteAll("1234");//Save Codes
         }
 
         private void AddNewProject(object sender, EventArgs e)
         {
-            this.GOTO(new UIRemote.AddingNewProject());
+            this.GOTO(TO: new AddingNewProject());
         }
+
+        private async void ExitAppClick(object sender, EventArgs e)
+        {
+            try
+            {
+                bool? exitapp = await this.SendAlert(M: "Do you want out ?", Questions: new[] { "no", "yes" });
+
+                if (exitapp == true)
+                {
+                    ISystemFunction MySetting = DependencyService.Get<ISystemFunction>();
+                    MySetting.ExitApp();
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
 
     }
 }

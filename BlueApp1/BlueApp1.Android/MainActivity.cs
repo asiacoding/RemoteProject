@@ -15,6 +15,7 @@ namespace BlueApp1.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IMessageSender
     {
 
+        public static string HardwareTapsNow;
         public static Activity MainActivitY { private set; get; }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -29,7 +30,8 @@ namespace BlueApp1.Droid
 
         public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e)
         {
-            MessagingCenter.Send(Xamarin.Forms.Application.Current, "OpenPage", keyCode.ToString());
+            HardwareTapsNow = keyCode.ToString();
+           // MessagingCenter.Send(Xamarin.Forms.Application.Current, "OpenPage", keyCode.ToString());
             return base.OnKeyDown(keyCode, e);
         }
 

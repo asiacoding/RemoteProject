@@ -64,7 +64,7 @@ namespace BlueApp1.EventsPage
             {
                 ContactsList.IsVisible = false;
                 AddNewChannels.IsVisible = true;
-                BtnSave.Text = "حفظ قنوات";
+                BtnSave.Text = "save channels";
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace BlueApp1.EventsPage
 
             if (StrogeChannel == null)
             {
-                this.SendAlert("هناك مشكلة الرجاء المحاولة مجددا");
+                this.DisplayErrorAlert();
                 return;
             }
 
@@ -95,7 +95,7 @@ namespace BlueApp1.EventsPage
             }
             else
             {
-                this.SendAlert("هذه القناة موجودة مسبقا");
+                this.SendAlert("This channel already exists");
             }
         }
 
@@ -109,16 +109,15 @@ namespace BlueApp1.EventsPage
 
                 ContactsList.IsVisible = true;
                 AddNewChannels.IsVisible = false;
-                BtnSave.Text = "اضافة قنوات";
+                BtnSave.Text = "Add channels";
 
             }
             else
             {
-                this.SendAlert("هناك مشكلة الرجاء المحاولة مجددا");
+                this.DisplayErrorAlert();
             }
         }
 
-
-
+      
     }
 }

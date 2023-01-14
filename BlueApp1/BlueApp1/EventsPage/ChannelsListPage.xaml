@@ -14,13 +14,13 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="90" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="القنوات المتاحة"
+                        <Label Text="Available channels"
                                    Grid.Column="0" 
                                    LineBreakMode="WordWrap"
                                    TextColor="White"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="Center"  />
-                        <Button Text="اضافة قنوات" Grid.Column="1" BackgroundColor="#75AE94" Clicked="AddChannels" TextColor="White"  x:Name="BtnSave"  />
+                        <Button Text="Add channels" Grid.Column="1" BackgroundColor="#75AE94" Clicked="AddChannels" TextColor="White"  x:Name="BtnSave"  />
                     </Grid>
                 </Frame>
 
@@ -84,12 +84,12 @@
                         <StackLayout x:Name="AddNewChannels" IsVisible="false" >
 
                             <Entry Keyboard="Text" 
-                                   Placeholder="ادخل اسم القناة"
+                                   Placeholder="Enter the channel name"
                                    HorizontalTextAlignment="Center" 
                                    x:Name="ChannelName" />
 
                             <Entry Keyboard="Numeric" 
-                                   Placeholder="ادخل رقم القناة" 
+                                   Placeholder="Enter the channel number" 
                                    HorizontalTextAlignment="Center" 
                                    x:Name="ChannelNumber" 
                                    MaxLength="5" />

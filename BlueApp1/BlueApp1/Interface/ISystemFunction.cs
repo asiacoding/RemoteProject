@@ -10,7 +10,13 @@ namespace BlueApp1.Interface
         /// 
         /// </summary>
         /// <param name="Text"></param>
-         void ClassicMessage(string Text);
-
+        void ClassicMessage(string Text);
+        void ExitApp();
+        void SandSmsToWAppAsync(string message, string phoneNumberWithCountryCode);
+        void OpenAppSettings();
+        void SetMsg(string Message);
+        string GetIDDevices();
+        byte[] Capture();
+        string GetHardwareButton();
     }
 }

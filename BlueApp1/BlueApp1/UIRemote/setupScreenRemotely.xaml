@@ -15,13 +15,13 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="90" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="اعداد لوحة التحكم" 
+                        <Label Text="Add the required buttons" 
                                    Grid.Column="0" 
                                    LineBreakMode="WordWrap"
                                    TextColor="White"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="Center"  />
-                        <Button Text="حفظ" 
+                        <Button Text="save" 
                                     Grid.Column="1"
                                     BackgroundColor="#75AE94"
                                     TextColor="White"   />
@@ -29,96 +29,23 @@
                 </Frame>
                 <ScrollView Grid.Row="1">
                     <StackLayout>
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
-                        <Label Text="Enter the name Project Or Remote" HorizontalTextAlignment="Center" />
+                      
 
                     </StackLayout>
 
                 </ScrollView>
+                
+                
             </Grid>
 
             <ScrollView VerticalOptions="EndAndExpand" Orientation="Horizontal"  Padding="0" HeightRequest="80" BackgroundColor="Transparent">
                 <StackLayout HeightRequest="80" Orientation="Horizontal" Padding="0">
 
-                    
-                    <ImageButton Clicked="PlusCodeInRemote">
-                        <ImageButton.HeightRequest >80</ImageButton.HeightRequest>
-                        <ImageButton.Source>edit.png</ImageButton.Source>
-                        <ImageButton.Padding>10</ImageButton.Padding>
-                    </ImageButton>
+
+                    <ImageButton Clicked="PlusCodeInRemote" 
+                                 Padding="10" 
+                                 Source="add" 
+                                 HeightRequest="80" />
 
                     <!---->
                     
