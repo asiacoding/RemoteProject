@@ -22,6 +22,7 @@ namespace BlueApp1
         {
             This.SendAlert("There was a problem, please try again");
         }
+
         public static class StantderValue
         {
             //CRM.WebView.Layer.TempletPage.Report.CanStartReport.html
@@ -42,17 +43,6 @@ namespace BlueApp1
 
         public static int GetSizeOfObject(object obj) => Marshal.SizeOf(obj);
 
-
-        //public static void getIamgeFromWebSite(this ImageButton Image, string PathImage)
-        //{
-        //    Image.Source = Api.Api.ApiLinkHost + PathImage;
-        //}
-
-        //public static void getIamgeFromWebSite(this Image Image, string PathImage)
-        //{
-        //    Image.Source = Api.Api.ApiLinkHost + PathImage;
-        //}
-
         public static void InitException(this Exception exception, string E = "", bool InartSceen = true)
         {
             if (exception.InnerException != null)
@@ -62,6 +52,11 @@ namespace BlueApp1
             else
             {
          //       exception.AddLogs(exception.Message, InartSceen);
+            }
+
+            if (E is null)
+            {
+                throw new ArgumentNullException(nameof(E));
             }
         }
 
@@ -190,18 +185,7 @@ namespace BlueApp1
         //    return (Show) ? Massgeing : "";
         //}
 
-        //public static DbWebApi.sqllite.Client GetClinet(int ID)
-        //{
-        //    var MyQ = Query.Client.Replace("--MC", $"where ClientID = {ID} LIMIT 1; --MC");
-        //    var Clinetelm = SQLiteConnection.Query<DbWebApi.sqllite.Client>(MyQ).FirstOrDefault();
-
-        //    if (Clinetelm != null)
-        //    {
-        //        return Clinetelm;
-        //    }
-
-        //    return null;
-        //}
+       
 
         public static bool PageIsBusy(this bool m, Xamarin.Forms.Page page = null)
         {
@@ -231,6 +215,29 @@ namespace BlueApp1
         {
             while (date.DayOfWeek != DayOfWeek.Friday) date = date.AddDays(-1);
             return new DateTime[] { date, date.AddDays(7) };
+        }
+
+        public static Page CurrentPage(this NavigableElement element)
+        {
+            var MyList = element.Navigation.NavigationStack;
+            if (MyList.Count > 1)
+                return MyList[MyList.Count - 1];
+            else
+                return MyList[0];
+        }
+        public static void Back(this NavigableElement element, List<Type> PageTypes)
+        {
+            //PageTypes
+            var MyPage = element.Navigation.NavigationStack.ToList();
+            foreach (Page item in MyPage)
+            {
+                if (PageTypes.Contains(item.GetType()))
+                {
+                    element.Navigation.RemovePage(item);
+                }
+            }
+          
+            //            element.Navigation.NavigationStack. = MyPage;
         }
 
         public static List<DateTime> ListDateToDate(DateTime date, DateTime Max)
@@ -266,7 +273,7 @@ namespace BlueApp1
             return DestinationObject;
         }
 
-        public static string ReadFle(string HtmlFile = "CRM.MiniApp.HtmlStyle.InvResult.html")
+        public static string ReadFle(string HtmlFile = "Add Here 'Def Path' ")
         {
             try
             {
@@ -339,10 +346,6 @@ namespace BlueApp1
             This.Navigation.PopAsync(false);
         }
 
-  
-
-
-     
         //public static string GetMonth(int _month)
         //{
         //    string[] Mon = {
@@ -360,7 +363,6 @@ namespace BlueApp1
         //        "November", // November
         //        "December" // December
         //    };
-
         //    return Mon[_month];
         //}
 
@@ -381,7 +383,6 @@ namespace BlueApp1
         //        "نوفمبر",
         //        "ديسمبر"
         //    };
-
         //    return Mon[_month];
         //}
 
@@ -444,33 +445,6 @@ namespace BlueApp1
             return All;
         }
 
-        //public static bool GetRoles(CRM.Enum.TransTypeRolse roles)
-        //{
-        //    try
-        //    {
-        //        int ID = (int)roles;
-        //        DbWebApi.Users_Company User = Extension.User;
-
-        //        DbWebApi.sqllite.UserRole Role = SQLiteConnection.Query<DbWebApi.sqllite.UserRole>(Query.GetUserRoles.Replace("--MC",
-
-        //            $" where UserID = {User.id} and " +
-        //            $"BranchID = {User.BranchID} and " +
-        //            $"IsEnabled = 1 and " +
-        //            $"RolesID = {ID} ")
-
-        //            ).ToList().LastOrDefault();
-
-        //        if (Role == null)
-        //            return false;
-
-        //        return Role.IsEnabled;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ex.InitException();
-        //        return false;
-        //    }
-        //}
         public static void SeeNotification(string Description, string Title, int BadgeNumber, string ReturningData, int NotificationId)
         {
             NotificationRequest notification = new NotificationRequest

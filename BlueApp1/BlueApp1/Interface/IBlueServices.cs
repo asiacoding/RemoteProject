@@ -8,12 +8,16 @@ namespace BlueApp1
     public interface IBlueServices
     {
         bool IsSupportBT {  get; }
-        Task<bool> Connect(string deviceName = "IRremote");
+        bool IsConnect { get; }
         void Write(string name);
         List<string> Devies();
-        bool IsConnect { get; }
+        Task<bool> Connect(string deviceName = "IRremote");
+
+        Task<string> BluetoothListeningforOne(
+            bool ConvertToString = true,
+            bool AfterListeningConnect = false);
+
         event EventHandler<object> Reading;
         event EventHandler<object> ClosedConnecting;
-        Task<string> BluetoothListeningforOne(bool ConvertToString = true);
     }
 }

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control"
+             x:Class="BlueApp1.Control.EditRemotely.ScreenEditing" 
+             
+           >
+    <ContentView.Content>
+        <StackLayout>
+
+            <AbsoluteLayout x:Name="AbMain" >
+
+
+                <Button Text="Object1" x:Name="Object1Lbl" Clicked="TargetObjecting" >
+                    <Button.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TargetObjecting"   />
+                        
+                    </Button.GestureRecognizers>
+                </Button>
+            
+            
+            </AbsoluteLayout>
+
+
+
+            <!-- Control -->
+            <ScrollView VerticalOptions="EndAndExpand" BackgroundColor="#eee"  >
+                <Grid Grid.ColumnSpan="3"
+                          Grid.Row="0"
+                          ColumnSpacing="-4"
+                          RowSpacing="-4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <!-- Up -->
+                    <ImageButton  Grid.ColumnSpan="2"  
+                                  Source="up"  
+                                  Clicked="UpsPoint"
+                                  Released="UpsPoint"
+                                  Padding="5" 
+                                  HeightRequest="50" />
+                    <!-- Left -->
+                    <ImageButton Grid.Row="1" 
+                                 Clicked="LeftPoint"
+                                 Released="LeftPoint"
+                                 HeightRequest="50"
+                                 Padding="5"
+                                 Source="left" />
+
+                    <ScrollView  Grid.Column="2" Orientation="Vertical" Grid.RowSpan="3"  >
+                        <StackLayout Spacing="-4" Orientation="Vertical" >
+                            
+                            <!-- ok -->
+                            <ImageButton Padding="5"
+                                         HeightRequest="50"
+                                         Source="Save" />
+                            
+                            <!-- ok -->
+                            <ImageButton Padding="5"      
+                                         HeightRequest="50"
+                                         Source="ok" />
+                            
+                            <!-- ok -->
+                            <ImageButton Padding="5"      
+                                         HeightRequest="50"
+                                         Source="delete" />
+                        </StackLayout>
+                    </ScrollView>
+
+                    <!-- Right -->
+                    <ImageButton Grid.Row="1" 
+                                 HeightRequest="50"
+                                 Grid.Column="1" 
+                                 Pressed="RightPoint"
+                                 Source="right" 
+                                 Padding="5" />
+                    
+                    <!-- Down -->
+                    <ImageButton Grid.Row="2" 
+                                 HeightRequest="50"
+                                 Padding="5"
+                                 Clicked="DownPoint"
+                                 Released="DownPoint"
+                                 Grid.ColumnSpan="2" 
+                                 Source="down" />
+
+                </Grid>
+            </ScrollView>
+
+
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

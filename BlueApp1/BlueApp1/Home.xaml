@@ -49,7 +49,7 @@
                                         Grid.Row="0"
                                         Text="setting" 
                                         Image="control"
-                                        ClickedControl="GetDataFromUart" />
+                                        ClickedControl="SettingPages" />
                         
                         <control:Views1 Grid.Column="0" 
                                         Grid.Row="1" 

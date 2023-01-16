@@ -10,6 +10,12 @@ namespace BlueApp1.Control
 {
     public class CustomButtonRemotely : ImageButton
     {
+        string FilAndTryAgain = "The process did not work for some unknown reason, try again"; //The process did not work for some unknown reason, try again
+        string OperationSuccess = "This is great. A new order has been saved. Do you want to try it now ?";
+        string OperationYes = "Yes";
+        string OperationNo = "No";
+        string OperationOrders = "There is no order here Do you want to add an order?";
+
         private IBlueServices ServicesBLUE = null;
         public CustomButtonRemotely()
         {
@@ -30,11 +36,9 @@ namespace BlueApp1.Control
         private string DataRes { set; get; }
         private async void CustomButtonRemotely_Clicked(object sender, EventArgs e)
         {
-            //if (IsSystemPad)
-            //{
             Models.Standard.Get.RemotesButton remotesButton = new Models.Standard.Get.RemotesButton();
             string Name = Source.ToString().Replace("File: ", "");
-            Models.Base.RemoteButtonModels BinKey = remotesButton.SystemPad(Name);
+            RemoteButtonModels BinKey = remotesButton.SystemPad(Name);
             if (BinKey != null)
             {
                 if (ServicesBLUE != null)
@@ -49,7 +53,13 @@ namespace BlueApp1.Control
             {
                 if (MainPageOwner != null)
                 {
-                    bool? Re = await MainPageOwner.SendAlert("لا يوجد اي امر هنا هل تريد اضافة امر ؟", new[] { "لا", "نعم" });
+                    //There is no order here Do you want to add an order?
+                    //لا يوجد اي امر هنا هل تريد اضافة امر ؟
+                    bool? Re = await MainPageOwner.SendAlert(OperationOrders, new[]
+                    {
+                        OperationNo,
+                        OperationYes
+                    });
 
                     if (Re.Value)
                     {
@@ -57,79 +67,55 @@ namespace BlueApp1.Control
                     }
                 }
             }
-            //}
-            //else
-            //{
-            //    Models.Standard.Get.RemotesButton remotesButton = new Models.Standard.Get.RemotesButton();
-            //    RemoteButtonModels BinKey = remotesButton.SystemPad(PAD);
-            //    if (ServicesBLUE != null)
-            //    {
-            //        ServicesBLUE.Write(BinKey.Codes + ";");
-            //    }
-            //    else
-            //    {
-            //        //Add New Putton
-            //    }
-            //}
         }
 
         public async Task CheckCodes(string Name)
         {
-            if ((ServicesBLUE == null) || !ServicesBLUE.IsConnect)
-            {
-                await ServicesBLUE.Connect();
-            }
-
-            ServicesBLUE.Write("A;");
-            DataRes = await ServicesBLUE.BluetoothListeningforOne(); // Fix Error Looping Button Value 0Xfffffff <<< From Hardware
+            if ((ServicesBLUE == null) || !ServicesBLUE.IsConnect) { _ = await ServicesBLUE.Connect(); }
+            ServicesBLUE.Write("GetCodes;"); // Send IR
+            DataRes = await ServicesBLUE.BluetoothListeningforOne();
             if (!string.IsNullOrEmpty(DataRes))
             {
                 try
                 {
                     long Code = Convert.ToInt64(DataRes);
-                    if (Code > 0 && Code < 4294967295)
+                    RemoteButtonModels models = new RemoteButtonModels()
                     {
-                        RemoteButtonModels models = new RemoteButtonModels()
+                        Codes = Code.ToString(),
+                        Name = Name,
+                        Guid = MT.SystemGuid,
+                        ModelRemote = "" // NO using Here
+                    };
+                    Models.Standard.Set.RemotesButton SetNewButton = new Models.Standard.Set.RemotesButton();
+                    if (SetNewButton.Add(models))
+                    {
+                        bool? CheckNow = await MainPageOwner.SendAlert(OperationSuccess, new[]
                         {
-                            Codes = Code.ToString(),
-                            Name = Name,
-                            Guid = MT.SystemGuid,
-                            ModelRemote = ""
-                        };
-                        Models.Standard.Set.RemotesButton SetNewButton = new Models.Standard.Set.RemotesButton();
-                        if (SetNewButton.Add(models))
+                            OperationNo,
+                            OperationYes
+                        });
+
+                        if (CheckNow.Value)
                         {
-
-                            bool? CheckNow = await MainPageOwner.SendAlert("هذا رائع لقد تم حفظ امر جديد هل تريد التجربه الان ؟", new[]
-                            {
-                                        "لا",
-                                        "نعم"
-                                    });
-
-                            if (CheckNow.Value)
-                            {
-                                ServicesBLUE.Write(DataRes + ";");
-                            }
-
+                            ServicesBLUE.Write(DataRes + ";"); // Send Data To Mobile Open Reader IR
                         }
                         else
                         {
-                            MainPageOwner.SendAlert("لم تنجح العملية لسبب غير معروف حاول مرة اخرى ");
                         }
                     }
                     else
                     {
-                        await CheckCodes(Name); //Looping !!!
+                        MainPageOwner.SendAlert(FilAndTryAgain);
                     }
                 }
                 catch (Exception)
                 {
-                    await CheckCodes(Name); //Looping !!!
+                    await CheckCodes(Name);
                 }
             }
             else
             {
-                MainPageOwner.SendAlert("لم تنجح العملية لسبب غير معروف حاول مرة اخرى ");
+                MainPageOwner.SendAlert(FilAndTryAgain);
             }
 
 

@@ -123,6 +123,11 @@ namespace BlueApp1
             }
         }
 
+    
 
+        private void SettingPages(object sender, EventArgs e)
+        {
+            this.GOTO(new Setting());
+        }
     }
 }

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Models.Standard.Set
 {
-    public class RemotesButton
+    public class AddModel<T>
     {
-        public bool Add(RemoteButtonModels remote)
+        public static bool Add(T remote)
         {
             try
             {
@@ -19,7 +19,7 @@ namespace Models.Standard.Set
             }
         }
 
-        public bool Add(List<RemoteButtonModels> remote)
+        public static bool Add(List<T> remote)
         {
             try
             {

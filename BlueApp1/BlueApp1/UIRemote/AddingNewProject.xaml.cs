@@ -13,11 +13,13 @@ namespace BlueApp1.UIRemote
             InitializeComponent();
             RemoteModeling = null;
         }
+
         static RemoteProjectModels RemoteModeling = null;
+        
         private void NextSatp(object sender, EventArgs e)
         {
-
             if (RemoteModeling == null)
+            {
                 RemoteModeling = new RemoteProjectModels()
                 {
                     Name = txtNameControl.Text,
@@ -26,6 +28,7 @@ namespace BlueApp1.UIRemote
                     Category = txtCategoryRemotes.Text,
                     SizeButton = picker.SelectedIndex,
                 };
+            }
 
             if (!string.IsNullOrEmpty(txtNameControl.Text) && picker.SelectedIndex != 0)
             {
@@ -35,6 +38,7 @@ namespace BlueApp1.UIRemote
             {
                 this.SendAlert("Please fill in all required information");
             }
+
         }
 
 

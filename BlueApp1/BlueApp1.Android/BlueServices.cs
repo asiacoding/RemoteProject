@@ -130,7 +130,7 @@ namespace BlueApp1.Droid
         {
             try
             {
-                if (!string.IsNullOrEmpty(name)) return; // Check Str Name 
+                if (string.IsNullOrEmpty(name)) return; // Check Str Name 
                 if (_Socket == null) { return; } // Check Socket is Null ?
                 if (!_Socket.IsConnected) // Check Device is Connect or no ?
                 {
@@ -188,7 +188,10 @@ namespace BlueApp1.Droid
         //    }
         //}
 
-        public async Task<string> BluetoothListeningforOne(bool ConvertToString = true)
+
+        public async Task<string> BluetoothListeningforOne(
+            bool ConvertToString = true,
+            bool AfterListeningConnect = false)
         {
             try
             {
@@ -220,7 +223,7 @@ namespace BlueApp1.Droid
                     foreach (byte item in buffer)
                     {
                         string Output = ConvertToString ? Convert.ToChar(item).ToString() : item.ToString();
-                        //NullNULLNULL
+
                         //in AcsII '59' = ';'
                         if (Output == ";" || Output == "\0" || item == 59)
                         {
@@ -243,13 +246,18 @@ namespace BlueApp1.Droid
 
                 }
 
-                if (_Socket.IsConnected) { _Socket.Close(); }
+
+
+                if (_Socket.IsConnected && !AfterListeningConnect) { _Socket.Close(); }
+
+                if (AfterListeningConnect) { _ = await Connect(); }
+
 
                 return Data;
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return "Error\n" + ex.Message;
             }
         }
 

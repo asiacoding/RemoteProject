@@ -7,39 +7,43 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Models.Base;
+using BlueApp1.Control;
+
 namespace BlueApp1.UIRemote
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetupScreenRemotely : ContentPage
     {
-        private RemoteProjectModels ProjectModels = null;
-        static IBlueServices blueServices = null;
+        //
+        string FillAllButton = "There are incomplete buttons. Please fill in all the buttons";
+        string successfullyProject = "A new project has been created successfully";
+
+        internal RemoteProjectModels _ProjectModels = new RemoteProjectModels();
+        internal static IBlueServices blueServices = null;
         public SetupScreenRemotely()
         {
             InitializeComponent();
             InitializePage();
         }
+
+
         public SetupScreenRemotely(RemoteProjectModels ProjectModels)
         {
             InitializeComponent();
-            this.ProjectModels = ProjectModels;
+            this._ProjectModels = ProjectModels;
             InitializePage();
         }
 
         void InitializePage()
         {
             blueServices = Xamarin.Forms.DependencyService.Get<IBlueServices>();
-            //ProjectModels.Guid  
-
         }
-
-
-
 
         public static IBlueServices BlueServices
         {
             get
             {
+                
                 if (blueServices == null)
                 {
                     blueServices = Xamarin.Forms.DependencyService.Get<IBlueServices>();
@@ -48,72 +52,91 @@ namespace BlueApp1.UIRemote
                 return blueServices;
             }
         }
+        
+   
 
-        private void ImageButton_Clicked(object sender, EventArgs e)
+        private async void PlusCodeInRemote(object sender, EventArgs e)
         {
-
-        }
-
-        private void PlusCodeInRemote(object sender, EventArgs e)
-        {
-            //add here New Buttons 
-
-        }
-
-        public class ButtonsUI : StackLayout
-        {
-            RemoteButtonModels RemoteModels;
-            public ButtonsUI(string Guid, string LayoutName)
+            try
             {
-                Orientation = StackOrientation.Horizontal;
-                RemoteModels = new RemoteButtonModels() { Guid = Guid };
-                Button SetIR = new Button()
+
+                if (_ProjectModels == null)
                 {
-                    Text = "Saglnes",
-                    HorizontalOptions = LayoutOptions.EndAndExpand,
-                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                };
-                SetIR.Clicked += SetIR_Clicked;
-
-                Label Lbl = new Label()
-                {
-                    Text = LayoutName,
-                    HorizontalOptions = LayoutOptions.EndAndExpand,
-                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                };
-
-                Children.Add(Lbl);
-                Children.Add(SetIR);
-            
-            }
-
-
-            private async void SetIR_Clicked(object sender, EventArgs e)
-            {
-                //Set Com To Devise BT
-                //Take a new sample of the signals
-
-                if (!BlueServices.IsSupportBT)
-                {
+                    this.DisplayErrorAlert();
                     return;
                 }
 
-                BlueServices.Write("Ready_TNSOTS;");
+                //add here New Buttons 
+                var Str = await DisplayPromptAsync("", "Create New Button", accept: "Create", placeholder: "Type The Name Button Layout ..", maxLength: 40, keyboard: Keyboard.Text);
 
-                string WaitingData = await BlueServices.BluetoothListeningforOne();
-
-                if (!string.IsNullOrEmpty(WaitingData))
+                if (!string.IsNullOrEmpty(Str))
                 {
-                    if (RemoteModels != null)
-                    {
-                        RemoteModels.Codes = WaitingData;
-                        RemoteModels.ModelRemote = "";
-                    }
+                    ButtonsUI buttonsUI = new ButtonsUI(_ProjectModels.Guid, Str);
+                    ControlButtons.Children.Add(buttonsUI);
                 }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                this.SendAlert(ex.Message);//DisplayErrorAlert();
             }
         }
 
 
+
+        private void btnSave(object sender, EventArgs e)
+        {
+            try
+            {
+                bool CheckButtonRemotes = true;
+                int CountsButtons = 0;
+                List<RemoteButtonModels> models = new List<RemoteButtonModels>();
+                ControlButtons.Children.ToList().ForEach(item =>
+                {
+                    if (item is ButtonsUI GetTime)
+                    {
+                        if (GetTime.StutsMode)
+                        {
+                            CountsButtons++;
+                            models.Add(GetTime.RemoteModels);
+                        }
+                        else
+                        {
+                            CheckButtonRemotes = false;
+                            return;
+                        }
+                    }
+                });
+
+                if (CheckButtonRemotes && CountsButtons > 0)
+                {
+                    /* Save Code */
+
+                    var MyBUtton = Models.Standard.Set.AddModel<RemoteProjectModels>.Add(_ProjectModels);
+                    if (MyBUtton)
+                    {
+                        Models.Standard.Set.AddModel<RemoteButtonModels>.Add(models);
+                        this.SendAlert(successfullyProject);
+                        this.Back(new List<Type>() { typeof(SetupScreenRemotely), typeof(AddingNewProject) } );
+                    }
+                    else
+                    {
+                        this.DisplayErrorAlert();
+                    }
+                }
+                else
+                {
+                    this.SendAlert(FillAllButton);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.SendAlert(ex.Message);
+            }
+
+        }
 
 
     }

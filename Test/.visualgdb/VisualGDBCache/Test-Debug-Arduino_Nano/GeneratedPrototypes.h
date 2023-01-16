@@ -3,9 +3,8 @@
 #include <Arduino.h>
 
 #define SYSPROGS_ARDUINO_EXPAND_GENERATED_PROTOTYPES \
-	void setup(); \
-	void AddNewSagnle(); \
 	void SetSagnle(); \
-	void RestartApp(); \
+	uint32_t ReadIRFROMRemote(); \
+	void setup(); \
 	void loop(); \
 
