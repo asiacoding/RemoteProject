@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Models.Standard.Set
 {
-    public class AddModel<T>
+    public static class AddModel<T>
     {
-        public static bool Add(T remote)
+        public static bool Add( T remote)
         {
             try
             {

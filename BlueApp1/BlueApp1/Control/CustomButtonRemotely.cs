@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
 using BlueApp1.Extensions;
@@ -86,8 +88,8 @@ namespace BlueApp1.Control
                         Guid = MT.SystemGuid,
                         ModelRemote = "" // NO using Here
                     };
-                    Models.Standard.Set.RemotesButton SetNewButton = new Models.Standard.Set.RemotesButton();
-                    if (SetNewButton.Add(models))
+                    var AddObj = Models.Standard.Set.AddModel<RemoteButtonModels>.Add(models);
+                    if (AddObj)
                     {
                         bool? CheckNow = await MainPageOwner.SendAlert(OperationSuccess, new[]
                         {
@@ -121,6 +123,8 @@ namespace BlueApp1.Control
 
 
         }
+
+
 
     }
 }

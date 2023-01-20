@@ -225,7 +225,7 @@ namespace BlueApp1
             else
                 return MyList[0];
         }
-        public static void Back(this NavigableElement element, List<Type> PageTypes)
+        public static void CloesPage(this NavigableElement element, List<Type> PageTypes)
         {
             //PageTypes
             var MyPage = element.Navigation.NavigationStack.ToList();

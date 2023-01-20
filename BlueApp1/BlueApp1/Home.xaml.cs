@@ -130,4 +130,12 @@ namespace BlueApp1
             this.GOTO(new Setting());
         }
     }
+
 }
+
+//Titla Lbl
+//Control panels
+//new project
+//setting
+//Delete existing remotes
+//Exit

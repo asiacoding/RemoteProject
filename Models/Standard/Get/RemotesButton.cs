@@ -8,25 +8,23 @@ namespace Models.Standard.Get
 {
     public class RemotesButton
     {
-        public List<RemoteButtonModels> GetALI()
+        public static List<RemoteButtonModels> GetALI()
         {
-            
             if (MainSqlite.DataBase == null)
             {
+              
                 return new List<RemoteButtonModels>();
             }
 
             return MainSqlite.DataBase.Table<RemoteButtonModels>().ToList();
         }
 
-        public List<RemoteButtonModels> GetByProject(string Guid)
+        public static List<RemoteButtonModels> GetByProject(string Guid)
         {
             try
             {
                 if (MainSqlite.DataBase == null)
-                {
                     return new List<RemoteButtonModels>();
-                }
 
                 return MainSqlite.DataBase.Query<RemoteButtonModels>("select * from RemoteButtonModels where Guid = @p0", Guid).ToList();
             }
@@ -34,9 +32,8 @@ namespace Models.Standard.Get
             {
                 return new List<RemoteButtonModels>();
             }
-
         }
-    
+
         public RemoteButtonModels SystemPad(string PadName)
         {
             try
@@ -45,7 +42,11 @@ namespace Models.Standard.Get
                 {
                     return null;
                 }
-                var MyKeyPad = MainSqlite.DataBase.Query<RemoteButtonModels>("select * from RemoteButtonModels where Name = @p0", PadName).ToList();
+
+                var NameTabel = typeof(RemoteButtonModels).Name;
+
+                var MyKeyPad = MainSqlite.DataBase.Query<RemoteButtonModels>($"select * from {NameTabel} where Name = @p0", PadName).ToList();
+
                 if ((MyKeyPad == null) || MyKeyPad.Count <= 0)
                 {
                     return null;

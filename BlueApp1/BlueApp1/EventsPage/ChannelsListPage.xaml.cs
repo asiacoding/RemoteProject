@@ -101,8 +101,7 @@ namespace BlueApp1.EventsPage
 
         public void Save(ChannelModels channel)
         {
-            Models.Standard.Set.Channel channeled = new Models.Standard.Set.Channel();
-            bool StatisSave = channeled.Add(channel);
+            bool StatisSave = Models.Standard.Set.AddModel<ChannelModels>.Add(channel);
             if (StatisSave)
             {
                 RefItemSource(); //Ref Models

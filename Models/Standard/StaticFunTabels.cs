@@ -17,5 +17,11 @@ namespace Models.Base
         public int Id { set; get; } // Def Key Sqlite only no using in App Now
         public DateTime? DataTime { set; get; } = null;
 
+        /// <summary>
+        /// In Base 
+        /// <para> Add in project only is Key </para>
+        /// </summary>
+        public string Guid { set; get; }
+
     }
 }

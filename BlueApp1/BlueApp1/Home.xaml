@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control" 
+             xmlns:DataModelsView="clr-namespace:BlueApp1" 
+             x:DataType="DataModelsView:MVVMHomeModels"
              x:Class="BlueApp1.Home" BackgroundColor="#fff"
              NavigationPage.HasNavigationBar="False" >
     <ContentPage.Content>
@@ -15,7 +17,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="90" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="magical stick (IR)"
+                    <Label Text="Magical Stick (IR)"
                                    Grid.Column="0" 
                                    LineBreakMode="WordWrap"
                                    TextColor="White"
@@ -41,7 +43,7 @@
                         
                         <control:Views1 Grid.Column="1" 
                                         Grid.Row="0"
-                                        Text="new project" 
+                                        Text="{Binding NewProject}" 
                                         Image="add" 
                                         ClickedControl="AddNewProject" />
                         

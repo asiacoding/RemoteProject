@@ -9,7 +9,6 @@ namespace Models.Base
     {
         public string ModelRemote { set; get; }
         public string Codes { set; get; } // add Hex Code or  Binter
-        public string Guid { set; get; } //Add in project only is Key
         public string Index { set; get; }
         public string Name { set; get; } // Name Button or ImageButton 
     }

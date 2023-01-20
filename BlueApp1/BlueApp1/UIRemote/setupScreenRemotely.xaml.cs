@@ -14,18 +14,18 @@ namespace BlueApp1.UIRemote
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetupScreenRemotely : ContentPage
     {
-        //
         string FillAllButton = "There are incomplete buttons. Please fill in all the buttons";
         string successfullyProject = "A new project has been created successfully";
 
-        internal RemoteProjectModels _ProjectModels = new RemoteProjectModels();
-        internal static IBlueServices blueServices = null;
+        internal RemoteProjectModels _ProjectModels { get; set; } = new RemoteProjectModels();
+        internal static IBlueServices blueServices { set; get; }
+        public static IBlueServices BlueServices => blueServices ?? (blueServices = DependencyService.Get<IBlueServices>());
+
         public SetupScreenRemotely()
         {
             InitializeComponent();
             InitializePage();
         }
-
 
         public SetupScreenRemotely(RemoteProjectModels ProjectModels)
         {
@@ -36,30 +36,17 @@ namespace BlueApp1.UIRemote
 
         void InitializePage()
         {
-            blueServices = Xamarin.Forms.DependencyService.Get<IBlueServices>();
+            
         }
 
-        public static IBlueServices BlueServices
-        {
-            get
-            {
-                
-                if (blueServices == null)
-                {
-                    blueServices = Xamarin.Forms.DependencyService.Get<IBlueServices>();
-                }
 
-                return blueServices;
-            }
-        }
-        
-   
+
+
 
         private async void PlusCodeInRemote(object sender, EventArgs e)
         {
             try
             {
-
                 if (_ProjectModels == null)
                 {
                     this.DisplayErrorAlert();
@@ -71,8 +58,7 @@ namespace BlueApp1.UIRemote
 
                 if (!string.IsNullOrEmpty(Str))
                 {
-                    ButtonsUI buttonsUI = new ButtonsUI(_ProjectModels.Guid, Str);
-                    ControlButtons.Children.Add(buttonsUI);
+                    AddNewModels(Str);
                 }
                 else
                 {
@@ -84,7 +70,11 @@ namespace BlueApp1.UIRemote
             }
         }
 
-
+        void AddNewModels(string name)
+        {
+            ButtonsUI buttonsUI = new ButtonsUI(_ProjectModels.Guid, name);
+            ControlButtons.Children.Add(buttonsUI);
+        }
 
         private void btnSave(object sender, EventArgs e)
         {
@@ -119,7 +109,11 @@ namespace BlueApp1.UIRemote
                     {
                         Models.Standard.Set.AddModel<RemoteButtonModels>.Add(models);
                         this.SendAlert(successfullyProject);
-                        this.Back(new List<Type>() { typeof(SetupScreenRemotely), typeof(AddingNewProject) } );
+                        this.CloesPage(new List<Type>()
+                        {
+                            GetType(), //Delet this Page
+                            typeof(AddingNewProject) // and Deleted AddingNewProject
+                        });
                     }
                     else
                     {

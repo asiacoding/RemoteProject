@@ -9,15 +9,21 @@
 
             <AbsoluteLayout x:Name="AbMain" >
 
-
                 <Button Text="Object1" x:Name="Object1Lbl" Clicked="TargetObjecting" >
-                    <Button.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TargetObjecting"   />
-                        
-                    </Button.GestureRecognizers>
+          
                 </Button>
-            
-            
+
+
+                <Button Text="Object1" x:Name="Object1Lb2" Clicked="TargetObjecting" >
+                
+                </Button>
+
+
+                <Button Text="Object1"  Clicked="TargetObjecting" >
+             
+                </Button>
+
+
             </AbsoluteLayout>
 
 
@@ -28,11 +34,13 @@
                           Grid.Row="0"
                           ColumnSpacing="-4"
                           RowSpacing="-4">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
+                    
                     <!-- Up -->
                     <ImageButton  Grid.ColumnSpan="2"  
                                   Source="up"  

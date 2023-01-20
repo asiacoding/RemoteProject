@@ -57,14 +57,17 @@ namespace BlueApp1.Control
         {
             try
             {
-                if (Data.SelectedIndex == 1)
+                if (Data.SelectedIndex == 0)
                 {
                     FromDevice();
                 }
-
+                else if (Data.SelectedIndex == 0)
+                {
+                    FromManual();
+                }
                 else if (Data.SelectedIndex == 2)
                 {
-                    this.CurrentPage().DisplayErrorAlert();
+                   // this.CurrentPage().DisplayErrorAlert();
                 }
             }
             catch (Exception ex)
@@ -118,6 +121,42 @@ namespace BlueApp1.Control
 
         }
 
+        async void FromManual()
+        {
+            try
+            {
+
+                if (StutsMode)
+                {
+                    return;
+                }
+
+                string Str = await this.CurrentPage().DisplayPromptAsync("", "Add Code IR", accept: "Create", placeholder: "Typeing IR Code (Number only Or Hex Code (Add Code '0x Number')", maxLength: 40, keyboard: Keyboard.Text);
+
+                if (!string.IsNullOrEmpty(Str))
+                {
+
+
+                    if (RemoteModels != null)
+                    {
+                        RemoteModels.Codes = Str;
+                        RemoteModels.ModelRemote = "";
+                        //SetIR.so = "Ok"; // 
+                        StutsMode = true;
+                    }
+
+                }
+                else
+                {
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+
         private void SetIR_Clicked(object sender, EventArgs e)
         {
             try
@@ -130,5 +169,9 @@ namespace BlueApp1.Control
             }
 
         }
+ 
+
+
+    
     }
 }

@@ -6,9 +6,7 @@ namespace BlueApp1.Extensions
 {
     internal static class MT
     {
-
         public const string SystemGuid = "7FDC63DB-BBE2-49A5-BE76-79799E8B72DA>"; // It' is System Code Def
-
         public static string ConvertDECtoBIN(this object ObjNumber)
         {
             string answer;
@@ -25,10 +23,6 @@ namespace BlueApp1.Extensions
             result = Convert.ToString(num) + result;
             return result;
         }
-
-
-
-
         public static string ConvertBINtoDEC(this object ObjNumber)
         {
             //Check
@@ -49,9 +43,5 @@ namespace BlueApp1.Extensions
             }
             return sum;
         }
-
-
-
-
     }
 }
