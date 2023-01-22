@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlueApp1.Extensions
+namespace BlueApp.Extensions
 {
     internal static class MT
     {

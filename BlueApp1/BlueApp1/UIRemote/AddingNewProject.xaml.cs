@@ -3,11 +3,12 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueApp1.UIRemote
+namespace BlueApp.UIRemote
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddingNewProject : ContentPage
     {
+        string requiredAllData = "Please fill in all required information";
         public AddingNewProject()
         {
             InitializeComponent();
@@ -26,17 +27,17 @@ namespace BlueApp1.UIRemote
                     Guid = Guid.NewGuid().ToString(),
                     Description = txtDesciptionsControl.Text,
                     Category = txtCategoryRemotes.Text,
-                    SizeButton = picker.SelectedIndex,
+                 //   SizeButton = picker.SelectedIndex,
                 };
             }
 
-            if (!string.IsNullOrEmpty(txtNameControl.Text) && picker.SelectedIndex != 0)
+            if (!string.IsNullOrEmpty(txtNameControl.Text))
             {
                 this.GOTO(new SetupScreenRemotely(RemoteModeling));
             }
             else
             {
-                this.SendAlert("Please fill in all required information");
+                this.SendAlert(requiredAllData);
             }
 
         }

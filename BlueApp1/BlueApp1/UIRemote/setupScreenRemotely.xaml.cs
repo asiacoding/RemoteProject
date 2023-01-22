@@ -7,17 +7,23 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Models.Base;
-using BlueApp1.Control;
+using BlueApp.Control;
+using BlueApp.interface_enum;
 
-namespace BlueApp1.UIRemote
+namespace BlueApp.UIRemote
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SetupScreenRemotely : ContentPage
+    public partial class SetupScreenRemotely : ContentPage, IMessageSender
     {
         string FillAllButton = "There are incomplete buttons. Please fill in all the buttons";
         string successfullyProject = "A new project has been created successfully";
 
+        internal static SetupScreenRemotely BasePageControl;
+
         internal RemoteProjectModels _ProjectModels { get; set; } = new RemoteProjectModels();
+
+        internal static StackLayout LayoutControllersButton { set; get; }
+
         internal static IBlueServices blueServices { set; get; }
         public static IBlueServices BlueServices => blueServices ?? (blueServices = DependencyService.Get<IBlueServices>());
 
@@ -36,9 +42,37 @@ namespace BlueApp1.UIRemote
 
         void InitializePage()
         {
-            
+            BasePageControl = this;
+            //Deleted Button From Layout 'Button'
+            MessagingCenter.Subscribe<IMessageSender, StackLayout>(BasePageControl, "DeletingButton", (snd, arg) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
+                    {
+                        foreach (View item in ControlButtons.Children.ToList())
+                        {
+                            if (item is ButtonsUI CurrControl)
+                            {
+                                if (Equals(CurrControl, arg)) { _ = ControlButtons.Children.Remove(CurrControl); }
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.SendAlert(ex.Message);
+                    }
+                });
+            });
+
+
         }
 
+        ~SetupScreenRemotely()
+        {
+            MessagingCenter.Unsubscribe<IMessageSender>(BasePageControl, "DeletingButton");
+        }
 
 
 
@@ -73,7 +107,10 @@ namespace BlueApp1.UIRemote
         void AddNewModels(string name)
         {
             ButtonsUI buttonsUI = new ButtonsUI(_ProjectModels.Guid, name);
+
+            LayoutControllersButton = ControlButtons;
             ControlButtons.Children.Add(buttonsUI);
+            //ControlButtons
         }
 
         private void btnSave(object sender, EventArgs e)

@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueApp1
+namespace BlueApp
 {
     public partial class Application : Xamarin.Forms.Application
     {
@@ -27,5 +27,38 @@ namespace BlueApp1
         protected override void OnResume()
         {
         }
+
+
+
+        protected override void OnAppLinkRequestReceived(Uri uri)
+        {
+            try
+            {
+                base.OnAppLinkRequestReceived(uri);
+                var CheckWebLink = uri.Segments;
+                // Spliet to '/'  
+
+                if (CheckWebLink.Length >= 2)
+                {
+                    string Code = CheckWebLink[1];
+                    if(Code.ToLower() == "msgcenter/")
+                    {
+                        MessagingCenter.Send<string,string>(Home.TargetObject,"SentToHomePage" ,CheckWebLink[2]);
+                    }
+                }
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string I = ex.Message;
+            }
+        }
+
+
     }
 }

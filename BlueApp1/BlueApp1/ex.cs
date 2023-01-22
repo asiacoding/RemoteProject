@@ -10,11 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-namespace BlueApp1
-
+namespace BlueApp
 {
     //public delegate void ReportSearchClick(object sender, Webapi.ElementSearchReport element);
-   
+
 
     public static partial class Extension
     {
@@ -23,35 +22,27 @@ namespace BlueApp1
             This.SendAlert("There was a problem, please try again");
         }
 
-        public static class StantderValue
-        {
-            //CRM.WebView.Layer.TempletPage.Report.CanStartReport.html
-            public const string CanStartRrpoetAboutFile = "CRM.WebView.Layer.TempletPage.Report.CanStartReport.html";
-        }
-
         public static Color ConvertToColor(this string FormatingColor)
         {
-            if (!string.IsNullOrEmpty(FormatingColor))
-            {
-                return Color.FromHex(FormatingColor);
-            }
-            else
-            {
-                return Color.Transparent;
-            }
+            return !string.IsNullOrEmpty(FormatingColor) ? Color.FromHex(FormatingColor) : Color.Transparent;
         }
 
-        public static int GetSizeOfObject(object obj) => Marshal.SizeOf(obj);
+        public static int GetSizeOfObject(object obj)
+        {
+            return obj is null ? 0 : Marshal.SizeOf(obj);
+        }
 
-        public static void InitException(this Exception exception, string E = "", bool InartSceen = true)
+        public static void InitException(this Exception exception, string E = "")
+        //,bool InartSceen )
+
         {
             if (exception.InnerException != null)
             {
-       //         exception.AddLogs(exception.InnerException.ToString(), InartSceen);
+                //         exception.AddLogs(exception.InnerException.ToString(), InartSceen);
             }
             else
             {
-         //       exception.AddLogs(exception.Message, InartSceen);
+                //       exception.AddLogs(exception.Message, InartSceen);
             }
 
             if (E is null)
@@ -185,13 +176,15 @@ namespace BlueApp1
         //    return (Show) ? Massgeing : "";
         //}
 
-       
 
-        public static bool PageIsBusy(this bool m, Xamarin.Forms.Page page = null)
+
+        public static bool PageIsBusy(this bool m, Page page = null)
         {
             if (page != null && m)
+            {
                 page.SendAlert
                     ("There is another process in progress");
+            }
 
             return m;
         }
@@ -201,7 +194,7 @@ namespace BlueApp1
         /// </summary>
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
-            var seenKeys = new HashSet<TKey>();
+            HashSet<TKey> seenKeys = new HashSet<TKey>();
             foreach (TSource element in source)
             {
                 if (seenKeys.Add(keySelector(element)))
@@ -213,22 +206,23 @@ namespace BlueApp1
 
         public static DateTime[] GetWeek(DateTime date)
         {
-            while (date.DayOfWeek != DayOfWeek.Friday) date = date.AddDays(-1);
+            while (date.DayOfWeek != DayOfWeek.Friday)
+            {
+                date = date.AddDays(-1);
+            }
+
             return new DateTime[] { date, date.AddDays(7) };
         }
 
         public static Page CurrentPage(this NavigableElement element)
         {
-            var MyList = element.Navigation.NavigationStack;
-            if (MyList.Count > 1)
-                return MyList[MyList.Count - 1];
-            else
-                return MyList[0];
+            IReadOnlyList<Page> MyList = element.Navigation.NavigationStack;
+            return MyList.Count > 1 ? MyList[MyList.Count - 1] : MyList[0];
         }
         public static void CloesPage(this NavigableElement element, List<Type> PageTypes)
         {
             //PageTypes
-            var MyPage = element.Navigation.NavigationStack.ToList();
+            List<Page> MyPage = element.Navigation.NavigationStack.ToList();
             foreach (Page item in MyPage)
             {
                 if (PageTypes.Contains(item.GetType()))
@@ -236,7 +230,7 @@ namespace BlueApp1
                     element.Navigation.RemovePage(item);
                 }
             }
-          
+
             //            element.Navigation.NavigationStack. = MyPage;
         }
 
@@ -246,11 +240,11 @@ namespace BlueApp1
             {
                 return new List<DateTime>();
             }
-            var getdays = new List<DateTime>();
+            List<DateTime> getdays = new List<DateTime>();
             while (date >= Max)
             {
                 getdays.Add(date);
-                date.AddDays(1);
+                _ = date.AddDays(1);
             }
             return getdays;
         }
@@ -267,9 +261,9 @@ namespace BlueApp1
         public static TDestination MappersConverter<TSource, TDestination>(TSource Sorese)
         {
             //Crated Mapper profile
-            var config = new AutoMapper.MapperConfiguration(cfg => cfg.CreateMap<TSource, TDestination>());
-            var IMapperObj = config.CreateMapper();
-            var DestinationObject = IMapperObj.Map<TSource, TDestination>(Sorese);
+            AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg => cfg.CreateMap<TSource, TDestination>());
+            AutoMapper.IMapper IMapperObj = config.CreateMapper();
+            TDestination DestinationObject = IMapperObj.Map<TSource, TDestination>(Sorese);
             return DestinationObject;
         }
 
@@ -280,7 +274,7 @@ namespace BlueApp1
                 Assembly assembly = IntrospectionExtensions.GetTypeInfo(typeof(Extension)).Assembly;
                 Stream stream = assembly.GetManifestResourceStream(HtmlFile);
                 string text = "";
-                using (var reader = new System.IO.StreamReader(stream))
+                using (StreamReader reader = new StreamReader(stream))
                 {
                     text = reader.ReadToEnd();
                 }
@@ -290,7 +284,7 @@ namespace BlueApp1
                 //    text = text.Replace("<!--ImageLogo-->", $"{reader.ReadToEnd()}")
                 //        .Replace("@Footer", "");
                 //}
-              //  ICreatedDBSqlite DbKey = Xamarin.Forms.DependencyService.Get<ICreatedDBSqlite>();
+                //  ICreatedDBSqlite DbKey = Xamarin.Forms.DependencyService.Get<ICreatedDBSqlite>();
                 return text;
             }
             catch (Exception ex)
@@ -301,23 +295,23 @@ namespace BlueApp1
 
         }
 
-    
 
 
-       
-        public static void GOTO(this Xamarin.Forms.Page This, Xamarin.Forms.Page TO)
+
+
+        public static void GOTO(this Page This, Page TO)
         {
-            This.Navigation.PushAsync(TO, false);
+            _ = This.Navigation.PushAsync(TO, false);
         }
 
-        public static void Back(this Xamarin.Forms.Page This)
+        public static void Back(this Page This)
         {
-            This.Navigation.PopAsync(false);
+            _ = This.Navigation.PopAsync(false);
         }
 
-        public static void Back(this Xamarin.Forms.Page This, bool At = false)
+        public static void Back(this Page This, bool At = false)
         {
-            This.Navigation.PopAsync(At);
+            _ = This.Navigation.PopAsync(At);
         }
 
         /// <summary>
@@ -325,17 +319,15 @@ namespace BlueApp1
         /// </summary>
         /// <param name="This"></param>
         /// <param name="Page"></param>
-        public static void Back(this Xamarin.Forms.Page This, Type Page)
+        public static void Back(this Page This, Type Page)
         {
-            Xamarin.Forms.Page Opened = This;
-            foreach (var item in This.Navigation.ModalStack)
+            foreach (Page item in This.Navigation.ModalStack)
             {
                 Type type = item.GetType();
-                var Cur = type;
+                Type Cur = type;
                 Type TargetPage = Page;
                 if (Cur.FullName != TargetPage.FullName)
                 {
-                    Opened = item;
                     break;
                 }
                 else
@@ -343,7 +335,7 @@ namespace BlueApp1
                     This.Navigation.RemovePage(item);
                 }
             }
-            This.Navigation.PopAsync(false);
+            _ = This.Navigation.PopAsync(false);
         }
 
         //public static string GetMonth(int _month)
@@ -386,9 +378,14 @@ namespace BlueApp1
         //    return Mon[_month];
         //}
 
-        public static void SendAlert(this Xamarin.Forms.Page T, string M,bool ShowTital = false)
+        public static void SendAlert(this Page T, string M, bool ShowTital = false)
         {
-            T.DisplayAlert(ShowTital ? "system alert" : "", M, "back");
+            if (T is null)
+            {
+                return;
+            }
+
+            _ = T.DisplayAlert(ShowTital ? "system alert" : "", M, "back");
         }
 
         /// <summary>
@@ -398,22 +395,16 @@ namespace BlueApp1
         /// <param name="M"></param>
         /// <param name="Questions">need 2 string Arry index 0 = No , and index 1 = yes </param>
         /// <returns></returns>
-        public static async Task<bool?> SendAlert(this Xamarin.Forms.Page T, string M, string[] Questions)
+        public static async Task<bool?> SendAlert(this Page T, string M, string[] Questions)
         {
-            if (Questions.Length == 2)
-            {
-                return await T.DisplayAlert("", M, Questions[1], Questions[0]);
-            }
-            else
-            {
-                return null;
-            }
+            return Questions.Length == 2 ? await T.DisplayAlert("", M, Questions[1], Questions[0]) : (bool?)null;
         }
 
 
         public static string GetNumbers(this string value)
         {
-            return new string(value.Where(a => char.IsDigit(a)).ToArray());
+            string v = new string(value.Where(a => char.IsDigit(a)).ToArray());
+            return v;
         }
 
         public static string ConvertFileToString(string Files)
@@ -429,12 +420,12 @@ namespace BlueApp1
         public static decimal GetPriceAfterDisconuts(decimal Price, int Discount, decimal Quantity)
         {
             decimal price = Price;
-            decimal Discount_ = (Convert.ToDecimal(Discount));
-            decimal Quantity_ = (Quantity);
+            decimal Discount_ = Convert.ToDecimal(Discount);
+            decimal Quantity_ = Quantity;
             decimal GetPriceAfterDiscount;
             if (Discount_ != 0)
             {
-                var _DisCount = (Discount_ / 100);
+                decimal _DisCount = Discount_ / 100;
                 GetPriceAfterDiscount = price * _DisCount;
             }
             else
@@ -455,11 +446,11 @@ namespace BlueApp1
                 ReturningData = ReturningData,
                 NotificationId = NotificationId,
             };
-            LocalNotificationCenter.Current.Show(notification);
+            _ = LocalNotificationCenter.Current.Show(notification);
         }
 
 
-   
+
 
 
     }
@@ -475,7 +466,7 @@ namespace BlueApp1
                 return null;
             }
             // Do your translation lookup here, using whatever method you require
-            var imageSource = ImageSource.FromResource(Source, typeof(ImageResourceExtension).GetTypeInfo().Assembly);
+            ImageSource imageSource = ImageSource.FromResource(Source, typeof(ImageResourceExtension).GetTypeInfo().Assembly);
             return imageSource;
         }
     }
@@ -484,8 +475,8 @@ namespace BlueApp1
     {
         public static string PathDB_Base()
         {
-            string applicationFolderPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "API");
-            _ = System.IO.Directory.CreateDirectory(applicationFolderPath);
+            string applicationFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "API");
+            _ = Directory.CreateDirectory(applicationFolderPath);
             string databaseFileName = Path.Combine(applicationFolderPath, "Base2.System");
             return databaseFileName;
         }

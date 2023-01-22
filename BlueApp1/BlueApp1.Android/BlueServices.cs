@@ -8,16 +8,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BlueApp1;
+using BlueApp;
 using Android.Bluetooth;
 using System.Threading.Tasks;
 using Java.Util;
-using BlueApp1.Droid;
+using BlueApp.Droid;
 using System.Threading;
 using Java.IO;
 
 [assembly: Xamarin.Forms.Dependency(typeof(BlueServices))]
-namespace BlueApp1.Droid
+namespace BlueApp.Droid
 {
     class BlueServices : IBlueServices
     {

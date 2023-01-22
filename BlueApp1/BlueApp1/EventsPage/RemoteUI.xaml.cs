@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlueApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueApp1.UIRemote
+namespace BlueApp.UIRemote
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RemoteUI : ContentPage
@@ -85,7 +86,7 @@ namespace BlueApp1.UIRemote
 
         private void ChanelsList(object sender, EventArgs e)
         {
-            this.GOTO(new BlueApp1.EventsPage.ChannelsListPage());
+            this.GOTO(new BlueApp.EventsPage.ChannelsListPage());
             //    <Button Text="القنوات المتاحة"  BackgroundColor="#75AE94" Clicked="AvailableChannels"  //Grid.Row="1"  TextColor="White" />
             //   <Image  Grid.Column="1" BackgroundColor="#75AE94" Source="control" Grid.Row="1" />
         }

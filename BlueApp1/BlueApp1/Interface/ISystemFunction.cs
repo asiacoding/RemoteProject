@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlueApp1.Interface
+namespace BlueApp.Interface
 {
     public interface ISystemFunction
     {

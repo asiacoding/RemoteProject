@@ -4,12 +4,12 @@ using Android.OS;
 using Android.Widget;
 using System;
 using Xamarin.Forms;
-using BlueApp1.Droid.Services;
+using BlueApp.Droid.Services;
 using Android.Graphics;
 using System.IO;
 
 [assembly: Dependency(typeof(DS_SystemFunction))]
-namespace BlueApp1.Droid.Services
+namespace BlueApp.Droid.Services
 {
 
     public class DS_SystemFunction : Interface.ISystemFunction

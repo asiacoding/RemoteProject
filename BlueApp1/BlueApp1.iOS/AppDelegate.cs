@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace BlueApp1.iOS
+namespace BlueApp.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
@@ -23,7 +23,7 @@ namespace BlueApp1.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new BlueApp1.Application());
+            LoadApplication(new BlueApp.Application());
 
             return base.FinishedLaunching(app, options);
         }

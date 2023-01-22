@@ -5,7 +5,7 @@ using Android.OS;
 using Android.Speech;
 using System.Collections.Generic;
 using System;
-using  BlueApp1.interface_enum;
+using  BlueApp.interface_enum;
 using Xamarin.Forms;
 using SpeechToText;
 
@@ -56,7 +56,7 @@ namespace SpeechToText
             // if you wish it to recognise the default Locale language and German
             // if you do use another locale, regional dialects may not be recognised very well
             voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
-            BlueApp1.Droid.MainActivity.MainActivitY.StartActivityForResult(voiceIntent, VOICE);
+            BlueApp.Droid.MainActivity.MainActivitY.StartActivityForResult(voiceIntent, VOICE);
 
         }
 

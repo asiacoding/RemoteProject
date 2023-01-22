@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control"
-             x:Class="BlueApp1.UIRemote.AddingNewProject" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp.Control"
+             x:Class="BlueApp.UIRemote.AddingNewProject" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
     <ContentPage.Content>
         <Grid>
 
@@ -26,7 +26,9 @@
                     <Editor x:Name="txtNameControl" Placeholder="Name Project Or Remote Name *" />
                     <Editor x:Name="txtDesciptionsControl" Placeholder="Description" />
                     <Editor x:Name="txtCategoryRemotes" Placeholder="category Projoect (TV,LED,Conditioners .. )"  />
-                    <Picker x:Name="picker"
+                    <!--
+                    
+                           <Picker x:Name="picker"
                                 Title="Choose the size of the remote control *" >
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
@@ -36,6 +38,8 @@
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
+                    
+                    -->
                     <StackLayout Orientation="Horizontal">
                         <Label Text="New" 
                                        Padding="3,6,0,6" />
@@ -73,7 +77,7 @@
                                 Text="back"
                                 BackgroundColor="#75AE94"
                                 ClickedControl="NextSatp" />
-                                
+
                 <control:Views1 Grid.Column="1" 
                                 HorizontalOptions="EndAndExpand"
                                 Grid.Row="1" 
@@ -84,8 +88,8 @@
                                 ClickedControl="NextSatp" />
 
             </StackLayout>
-                
-                
+
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

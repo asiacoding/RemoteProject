@@ -1,5 +1,7 @@
-﻿using BlueApp1.Interface;
-using BlueApp1.UIRemote;
+﻿using BlueApp.EventsPage;
+using BlueApp.Interface;
+using BlueApp.UIRemote;
+using Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,32 +11,26 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueApp1
+namespace BlueApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home : ContentPage
     {
+        
+        public const string TargetObject = "T"; // no Remove This
+
         private static IBlueServices ServicesBLUE = null;
         public Home()
         {
             InitializeComponent();
-
- 
-            if (ServicesBLUE == null)
-            {
-                ServicesBLUE = DependencyService.Get<IBlueServices>(); // In Start App . Connect BT Def 
-            }
-
+            BindingContext = new BlueApp.Language.DataModels.MVVMHomeModels();
+            if (ServicesBLUE == null) { ServicesBLUE = DependencyService.Get<IBlueServices>(); } // In Start App . Connect BT Def 
             RefLayoutConnectToBT();
+            MessagingCenter.Subscribe<string, string>(TargetObject, "SentToHomePage", (snd, arg) => { Device.BeginInvokeOnMainThread(() => { this.SendAlert(arg); }); });
 
-           // ConnectBtn.Text = ServicesBLUE.IsConnect ? "Connected" : "Connect"; // Check And Set Output to User ..
-
-            // MessagingCenter.Subscribe<Xamarin.Forms.Application, string>//(Xamarin.Forms.Application.Current, "OpenPage", (snd, arg) =>
-            // {
-            //     Device.BeginInvokeOnMainThread(() => { LastButton.Text = arg; });
-            // });
-
+       
         }
+
 
         private async void opneControl(object sender, EventArgs e)
         {
@@ -63,10 +59,9 @@ namespace BlueApp1
                 Notes.Text = ex.Message;
             }
         }
-
         private void RefLayoutConnectToBT()
         {
-            if(ServicesBLUE == null)
+            if (ServicesBLUE == null)
             {
                 ConnectBtn.Text = "Connect";
                 Notes.Text = "";
@@ -76,7 +71,6 @@ namespace BlueApp1
             Notes.Text = ServicesBLUE.IsConnect ? "The connection has been restored successfully" : "An error occurred, please try again";
             ConnectBtn.Text = ServicesBLUE.IsConnect ? "Connected" : "Connect";
         }
-
         private async void Checkconnect(object sender, EventArgs e)
         {
             try
@@ -94,18 +88,37 @@ namespace BlueApp1
                 this.SendAlert(ex.Message);
             }
         }
-
         private void GetDataFromUart(object sender, EventArgs e)
         {
-        //    Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
-        //    DeleteObjRemote.DeleteAll("1234");//Save Codes
+            //    Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
+            //    DeleteObjRemote.DeleteAll("1234");//Save Codes
+            try
+            {
+                var MyRespones = Models.Standard.Get.ProjectModel<object>.GetALI();
+
+                if (MyRespones.Status)
+                {
+                    Piker1.ItemsSource = MyRespones.Data.ToList();
+                    Piker1.Focus();
+                }
+                else
+                {
+                    //Add Msg
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+         
+
+
         }
 
         private void AddNewProject(object sender, EventArgs e)
         {
             this.GOTO(TO: new AddingNewProject());
         }
-
         private async void ExitAppClick(object sender, EventArgs e)
         {
             try
@@ -122,14 +135,27 @@ namespace BlueApp1
             {
             }
         }
-
-    
-
         private void SettingPages(object sender, EventArgs e)
         {
             this.GOTO(new Setting());
         }
-    }
+
+        private void GotoPageProjects(object sender, EventArgs e) //Do Selecting Item from Piker1
+        {
+            try
+            {
+                int SelectIndex = Piker1.SelectedIndex;
+                var MyObject = Piker1.ItemsSource[SelectIndex];
+                if (MyObject is RemoteProjectModels GetProject)
+                    this.GOTO(new OpenProjectRemote(GetProject.Guid));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+      
+}
 
 }
 

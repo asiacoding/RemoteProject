@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BlueApp;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace BlueApp1.interface_enum
+namespace BlueApp.interface_enum
 {
 
     public interface ISpeechToText

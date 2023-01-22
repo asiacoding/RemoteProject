@@ -20,7 +20,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSuperRemote", "TestSupe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueApp.Language", "BlueApp.Language\BlueApp.Language.csproj", "{FA212A37-335B-4698-8284-A4BF3C022378}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Code C Sharp", "Test Code C Sharp\Test Code C Sharp.csproj", "{91655E7A-44BF-4153-AA77-D4457B35B98D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test Code C Sharp", "Test Code C Sharp\Test Code C Sharp.csproj", "{91655E7A-44BF-4153-AA77-D4457B35B98D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9FAE04E-5002-4543-AF67-325C7ABA6852}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

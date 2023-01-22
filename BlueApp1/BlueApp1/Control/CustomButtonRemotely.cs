@@ -4,11 +4,11 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
-using BlueApp1.Extensions;
+using BlueApp.Extensions;
 using Models.Base;
 using System.Threading.Tasks;
 
-namespace BlueApp1.Control
+namespace BlueApp.Control
 {
     public class CustomButtonRemotely : ImageButton
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueApp1.UIRemote
+namespace BlueApp.UIRemote
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Setting : ContentPage

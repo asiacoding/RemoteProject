@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueApp1.EventsPage
+namespace BlueApp.EventsPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChannelsListPage : ContentPage

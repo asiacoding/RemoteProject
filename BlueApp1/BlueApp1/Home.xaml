@@ -1,100 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BlueApp1.Control" 
-             xmlns:DataModelsView="clr-namespace:BlueApp1" 
-             x:DataType="DataModelsView:MVVMHomeModels"
-             x:Class="BlueApp1.Home" BackgroundColor="#fff"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:control="clr-namespace:BlueApp.Control" 
+
+             
+             x:Class="BlueApp.Home"
+             BackgroundColor="#fff"
+             
+             NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False" >
+
+
     <ContentPage.Content>
-        <StackLayout>
-
-
-
-
+        <Grid>
+            <Grid.RowDefinitions >
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="7"   >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="90" />
                     </Grid.ColumnDefinitions>
+                    <StackLayout>
+                        
                     <Label Text="Magical Stick (IR)"
-                                   Grid.Column="0" 
-                                   LineBreakMode="WordWrap"
-                                   TextColor="White"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"  />
-                    <Button Text="" x:Name="ConnectBtn"
-                                    Grid.Column="1"
-                                    BackgroundColor="#75AE94"
+                           Grid.Column="0" 
+                           FontSize="20"
+                           LineBreakMode="WordWrap"
+                           TextColor="White"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="20,7,0,0" />
+                      
+                        <Label BackgroundColor="Transparent" 
+                               FontSize="12"
+                               TextColor="White" 
+                               x:Name="Notes" 
+                               Text="Hello Error"  
+                               VerticalOptions="EndAndExpand" 
+                               Margin="6,0,0,6"  />
+                        
+                    </StackLayout>
+                    <Button Text="" 
+                            x:Name="ConnectBtn"
+                            Grid.Column="1"
+                            BackgroundColor="#75AE94"
                             Clicked="Checkconnect"
-                                    TextColor="White"   />
+                            TextColor="White"   />
                 </Grid>
             </Frame>
-
-
-            <ScrollView>
+            <ScrollView Grid.Row="1">
                 <StackLayout>
                     <Grid Padding="10">
+
                         <control:Views1 Grid.Column="0"
                                         Grid.Row="0" 
-                                        Text="Control panels" 
+                                        Text="Open Project" 
                                         ClickedControl="opneControl"
                                         Image="pincode_keyboard"  />
-                        
+
                         <control:Views1 Grid.Column="1" 
                                         Grid.Row="0"
-                                        Text="{Binding NewProject}" 
+                                        Text="New Remote" 
                                         Image="add" 
                                         ClickedControl="AddNewProject" />
-                        
+
                         <control:Views1 Grid.Column="2" 
-                                        Grid.Row="0"
-                                        Text="setting" 
-                                        Image="control"
-                                        ClickedControl="SettingPages" />
-                        
-                        <control:Views1 Grid.Column="0" 
-                                        Grid.Row="1" 
-                                        Image="control"
-                                        Text="Delete existing remotes"
+                                        Grid.Row="0" 
+                                        Image="Logo"
+                                        Text="Magical Mode"
                                         x:Name="LastButton" 
                                         ClickedControl="GetDataFromUart" />
-                        
+
+                        <control:Views1 Grid.Column="0" 
+                                        Grid.Row="1"
+                                        Text="setting" 
+                                        Image="setting"
+                                        ClickedControl="SettingPages" />
+
                         <control:Views1 Grid.Column="1" 
                                         Grid.Row="1" 
                                         Image="power"
                                         Text="Exit"
                                         x:Name="ExistApp" 
                                         ClickedControl="ExitAppClick" />
-
-                        <!--
-                        <control:Views1 Grid.Column="1" Grid.Row="1" />
-                        <control:Views1  Grid.Column="1" Grid.Row="1" />
-                        <control:Views1 Grid.Column="0" Grid.Row="2" />
-                        <control:Views1 Grid.Column="1" Grid.Row="2" />
-                        <control:Views1  Grid.Column="1" Grid.Row="2" />
-                        -->
+                        
                     </Grid>
+
+                    <!--
+                    <WebView HeightRequest="1000" WidthRequest="1000" x:Name="WebView1" />
+                    -->
+
+
+                    <Picker IsVisible="false" Title="Select Remotely" SelectedIndexChanged="GotoPageProjects" x:Name="Piker1" />
+
                 </StackLayout>
             </ScrollView>
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <Label BackgroundColor="Transparent" TextColor="Black" x:Name="Notes" Text="" VerticalOptions="EndAndExpand" HorizontalTextAlignment="Center" Margin="5"  />
 
-        </StackLayout>
+
+
+
+
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

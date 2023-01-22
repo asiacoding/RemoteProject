@@ -23,9 +23,9 @@ namespace Models.Standard.Set
         {
             try
             {
-                return MainSqlite.DataBase.Insert(remote) == remote.Count;
+                return MainSqlite.DataBase.InsertAll(remote) == remote.Count;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

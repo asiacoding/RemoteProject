@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace BlueApp1.iOS
+namespace BlueApp.iOS
 {
     public class Application
     {

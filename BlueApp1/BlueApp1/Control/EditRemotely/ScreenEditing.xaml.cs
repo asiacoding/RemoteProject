@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueApp1.Control.EditRemotely
+namespace BlueApp.Control.EditRemotely
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScreenEditing : ContentView

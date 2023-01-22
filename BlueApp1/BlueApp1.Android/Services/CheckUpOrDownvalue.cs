@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-namespace BlueApp1.Droid.Services
+namespace BlueApp.Droid.Services
 {
     [BroadcastReceiver(Enabled = true,Exported = false)]
     [IntentFilter(new[] { Android.Content.Intent.ActionMediaButton })] // Android.Media.MediaExtractor.

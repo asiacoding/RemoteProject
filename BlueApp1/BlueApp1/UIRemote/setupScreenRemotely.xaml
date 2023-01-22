@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlueApp1.UIRemote.SetupScreenRemotely" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
+             x:Class="BlueApp.UIRemote.SetupScreenRemotely" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False" BackgroundColor="White" >
     <ContentPage.Content>
         <StackLayout>
 
@@ -79,9 +79,13 @@
             </ListView>
             -->
 
-            <ScrollView VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="0" HeightRequest="80" BackgroundColor="Transparent" >
-                <StackLayout HeightRequest="80" Orientation="Horizontal" Padding="0" >
-                    <ImageButton Clicked="PlusCodeInRemote" Padding="10" Source="add" HeightRequest="80" />
+            <ScrollView VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="0" HeightRequest="60" BackgroundColor="Transparent" >
+                <StackLayout HeightRequest="60" Orientation="Horizontal" Padding="0" >
+                    <ImageButton Clicked="PlusCodeInRemote" 
+                                 Padding="10" 
+                                 Source="add" 
+                                 HeightRequest="60"
+                                 BackgroundColor="Transparent"  />
                 </StackLayout>
             </ScrollView>
 
