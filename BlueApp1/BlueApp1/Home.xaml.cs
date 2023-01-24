@@ -23,12 +23,10 @@ namespace BlueApp
         public Home()
         {
             InitializeComponent();
-            BindingContext = new BlueApp.Language.DataModels.MVVMHomeModels();
+            //BindingContext = new BlueApp.Language.DataModels.MVVMHomeModels();
             if (ServicesBLUE == null) { ServicesBLUE = DependencyService.Get<IBlueServices>(); } // In Start App . Connect BT Def 
             RefLayoutConnectToBT();
-            MessagingCenter.Subscribe<string, string>(TargetObject, "SentToHomePage", (snd, arg) => { Device.BeginInvokeOnMainThread(() => { this.SendAlert(arg); }); });
-
-       
+            //MessagingCenter.Subscribe<string, string>(TargetObject, "SentToHomePage", (snd, arg) => { Device.BeginInvokeOnMainThread(() => { this.SendAlert(arg); }); });
         }
 
 
@@ -88,32 +86,7 @@ namespace BlueApp
                 this.SendAlert(ex.Message);
             }
         }
-        private void GetDataFromUart(object sender, EventArgs e)
-        {
-            //    Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
-            //    DeleteObjRemote.DeleteAll("1234");//Save Codes
-            try
-            {
-                var MyRespones = Models.Standard.Get.ProjectModel<object>.GetALI();
 
-                if (MyRespones.Status)
-                {
-                    Piker1.ItemsSource = MyRespones.Data.ToList();
-                    Piker1.Focus();
-                }
-                else
-                {
-                    //Add Msg
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-         
-
-
-        }
 
         private void AddNewProject(object sender, EventArgs e)
         {
@@ -140,22 +113,65 @@ namespace BlueApp
             this.GOTO(new Setting());
         }
 
+
+
+
+
+
+
         private void GotoPageProjects(object sender, EventArgs e) //Do Selecting Item from Piker1
         {
             try
             {
+
                 int SelectIndex = Piker1.SelectedIndex;
-                var MyObject = Piker1.ItemsSource[SelectIndex];
-                if (MyObject is RemoteProjectModels GetProject)
-                    this.GOTO(new OpenProjectRemote(GetProject.Guid));
+
+
+                if (SelectIndex == -1) return;
+
+                if (CurrentProject.Count + 1 >= SelectIndex)
+                {
+                    var MyObject = CurrentProject[SelectIndex];
+
+                    if (MyObject is RemoteProjectModels GetProject)
+                        this.GOTO(new OpenProjectRemote(GetProject.Guid));
+
+                }
             }
             catch (Exception)
             {
             }
         }
+        List<string> ProjectManger = new List<string>();
+        List<RemoteProjectModels> CurrentProject = new List<RemoteProjectModels>();
+        private void GetDataFromUart(object sender, EventArgs e)
+        {
+            //    Models.Standard.Delete.RemotesButton DeleteObjRemote = new Models.Standard.Delete.RemotesButton();
+            //    DeleteObjRemote.DeleteAll("1234");//Save Codes
+            try
+            {
+                var MyRespones = Models.Standard.Get.ProjectModel<object>.GetALI();
 
-      
-}
+                if (MyRespones.Status)
+                {
+                    ProjectManger = new List<string>();
+                    MyRespones.Data.ForEach((a) => { ProjectManger.Add(a.Name); }); // Set Name 
+                    CurrentProject = MyRespones.Data;
+                    Piker1.ItemsSource = ProjectManger;
+                    Piker1.Focus();
+                }
+                else
+                {
+                    //Add Msg
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+    }
 
 }
 

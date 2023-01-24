@@ -2,3 +2,8 @@
 
 # Default severity for all analyzer diagnostics
 dotnet_analyzer_diagnostic.severity = none
+csharp_style_expression_bodied_properties=when_on_single_line:silent
+
+[*.{cs,vb}]
+end_of_line=lf
+indent_style=tab

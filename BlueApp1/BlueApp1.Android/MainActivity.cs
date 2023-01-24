@@ -18,10 +18,10 @@ namespace BlueApp.Droid
         MainLauncher = true,
         ConfigurationChanges = 
         ConfigChanges.ScreenSize |
-        ConfigChanges.Orientation | 
+        ConfigChanges.Orientation  | 
         ConfigChanges.UiMode |
         ConfigChanges.ScreenLayout |
-        ConfigChanges.SmallestScreenSize)]
+        ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
 
     [IntentFilter(
         new[] { Android.Content.Intent.ActionView, }, //https://MagicalStick.Blocking/MsgCenter/Code

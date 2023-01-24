@@ -1,4 +1,5 @@
 ﻿using Plugin.LocalNotification;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -176,7 +177,15 @@ namespace BlueApp
         //    return (Show) ? Massgeing : "";
         //}
 
+        public static ImageSource ConvertStringTOSQCOde(this string Data, QRCodeGenerator.ECCLevel ECCLevels,int GraphicSize = 20)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
 
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(Data, ECCLevels);
+            PngByteQRCode qRCode = new PngByteQRCode(qrCodeData);
+            byte[] qrCodeBytes = qRCode.GetGraphic(GraphicSize);
+            return ImageSource.FromStream(() => new MemoryStream(qrCodeBytes));
+        }
 
         public static bool PageIsBusy(this bool m, Page page = null)
         {

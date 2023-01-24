@@ -17,7 +17,7 @@
                 <RowDefinition Height="80" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="20" Margin="7"   >
+            <Frame Padding="0" BackgroundColor="#75AE94" CornerRadius="0" Margin="0"   >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -46,6 +46,7 @@
                     <Button Text="" 
                             x:Name="ConnectBtn"
                             Grid.Column="1"
+                            FontSize="12"
                             BackgroundColor="#75AE94"
                             Clicked="Checkconnect"
                             TextColor="White"   />
@@ -57,14 +58,14 @@
 
                         <control:Views1 Grid.Column="0"
                                         Grid.Row="0" 
-                                        Text="Open Project" 
+                                        Text="Magical Classic" 
                                         ClickedControl="opneControl"
-                                        Image="pincode_keyboard"  />
+                                        Image="Logo"  />
 
                         <control:Views1 Grid.Column="1" 
                                         Grid.Row="0"
-                                        Text="New Remote" 
-                                        Image="add" 
+                                        Text="New Magical" 
+                                        Image="Logo" 
                                         ClickedControl="AddNewProject" />
 
                         <control:Views1 Grid.Column="2" 
@@ -74,6 +75,8 @@
                                         x:Name="LastButton" 
                                         ClickedControl="GetDataFromUart" />
 
+
+
                         <control:Views1 Grid.Column="0" 
                                         Grid.Row="1"
                                         Text="setting" 
@@ -81,11 +84,23 @@
                                         ClickedControl="SettingPages" />
 
                         <control:Views1 Grid.Column="1" 
+                                        Grid.Row="1"
+                                        Text="More" 
+                                        Image="menuP1"
+                                        ClickedControl="SettingPages" />
+
+                        <control:Views1 Grid.Column="2" 
                                         Grid.Row="1" 
                                         Image="power"
                                         Text="Exit"
                                         x:Name="ExistApp" 
                                         ClickedControl="ExitAppClick" />
+
+                        <StackLayout Grid.ColumnSpan="3" 
+                                        Grid.Row="2" Grid.RowSpan="8" BackgroundColor="#eee">
+                            
+                        </StackLayout>
+                        
                         
                     </Grid>
 

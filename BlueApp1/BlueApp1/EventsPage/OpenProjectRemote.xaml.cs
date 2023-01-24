@@ -1,5 +1,7 @@
-﻿using System;
+﻿using QRCoder;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -32,7 +34,6 @@ namespace BlueApp.EventsPage
             //this.Child
         }
 
-
         //CodeElment elment;
         internal void init(string Guid = "Null")
         {
@@ -56,7 +57,13 @@ namespace BlueApp.EventsPage
                         {
                             foreach (var item in MyButton.ToList())
                             {
-                                Button button = new Button() { Text = item.Name, BackgroundColor = Color.FromHex("#75AE94"), TextColor = Color.White, CornerRadius = 20, };
+                                Button button = new Button()
+                                {
+                                    Text = item.Name,
+                                    BackgroundColor = Color.FromHex("#75AE94"),
+                                    TextColor = Color.White,
+                                    CornerRadius = 20,
+                                };
                                 button.Clicked += MagicalButtonSendingCode;
                                 ItemsMagicalCode.Children.Add(button);
                             }
@@ -80,90 +87,15 @@ namespace BlueApp.EventsPage
             {
                 this.SendAlert(ex.Message);
             }
+            
 
+
+           // "HelloA hmed".ConvertStringTOSQCOde();
         }
-
-
-
-
-        //private void Menu_Top_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (elment == CodeElment.NotFound)
-        //    {
-        //        return;
-        //    }
-
-        //    if (elment == CodeElment.MainList)
-        //    {
-        //        var Index = Menu_Top.SelectedIndex;
-        //    }
-        //}
-
-        //public enum CodeElment { NotFound = -1, MainList = 0, InRemote = 1 }
-
-        //int Index = 0;
-
-        //public class PickerList : Picker
-        //{
-        //    public PickerList(Grid dataLayout, string SetTitalStartControl = "")
-        //    {
-        //        this.IsVisible = false;
-        //        this.IsEnabled = false;
-        //        dataLayout.Children.Add(this);
-
-        //        if (!string.IsNullOrEmpty(SetTitalStartControl))
-        //            this.Tital = SetTitalStartControl;
-        //    }
-
-        //    public PickerList(string SetTitalStartControl = "")
-        //    {
-        //        this.IsVisible = false;
-        //        this.IsEnabled = false;
-
-        //        if (!string.IsNullOrEmpty(SetTitalStartControl))
-        //            this.Tital = SetTitalStartControl;
-
-        //    }
-
-        //    public void ShowList()
-        //    {
-        //        this.Focus();
-        //    }
-
-        //    public string Tital
-        //    {
-        //        set => this.Tital = value;
-        //        get => this.Tital;
-        //    }
-
-        //    public void SetList(string[] list)
-        //    {
-        //        this.ItemsSource = list;
-        //    }
-
-
-
-        //}
 
         private void SelectMenu(object sender, EventArgs e)
         {
-            //  SetIndex();
-            //   Menu_Top.ShowList();
         }
-
-        //void SetIndex()
-        //{
-        //    if (Index == 0)
-        //    {
-        //        Menu_Top.ItemsSource = new[] { "Add", "Move", "Back" };
-        //        //                Menu_Top.ItemsSource = new[] { "Add", "Move", "Back" };
-
-        //    }
-        //    else
-        //    {
-        //        Menu_Top.ItemsSource = new[] { "no More Code" };
-        //    }
-        //}
 
         private void MagicalButtonSendingCode(object sender, EventArgs e)
         {
@@ -176,19 +108,14 @@ namespace BlueApp.EventsPage
 
         async void GifAcoine()
         {
-
-
             try
             {
-
                 if (!IsSendingCodes)
                 {
                     IsSendingCodes = true;
-                    await DoRunAminusons();
-                    IsSendingCodes = false;
+                    await DoRunAminusons(MainGridMaige); //(GIFImageMagle); 
+                     IsSendingCodes = false;
                 }
-
-
             }
             catch (Exception)
             {
@@ -197,56 +124,58 @@ namespace BlueApp.EventsPage
             }
         }
 
-        private async Task DoRunAminusons()
+        //MainGridMaige
+        private async Task DoRunAminusons(View GIFImageMagleItems)
         {
             await Task.Run(async () =>
             {
-
-
                 bool Top = false, Bot = false, backtoCenter = false;
                 int Speed = 0;
-
                 do
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        GIFImageMagle.Rotation = Speed;
+                        GIFImageMagleItems.Rotation = Speed;
                     });
                     await Task.Delay(1);
-
-
-
                     if (!Top)
                     {
                         if (Speed > 44) { Top = true; }
-
                         Speed++;
                         continue;
-
                     }
-
                     if (!Bot)
                     {
                         if (Speed < -44) { Bot = true; }
                         Speed--;
                         continue;
                     }
-
                     if (!backtoCenter && Bot & Top)
                     {
-                        if (Speed >= 0 && Speed <= 2) { backtoCenter = true; GIFImageMagle.Rotation = 0; }
+                        if (Speed >= 0 && Speed <= 2) { backtoCenter = true; GIFImageMagleItems.Rotation = 0; }
                         Speed++;
                         continue;
                     }
-
-
-
                 } while (!Top || !Bot || !backtoCenter);
-
-
-
             });
         }
+
+		public class ACTask
+		{
+			public ACTask( Func<Task> Funcs)
+			{
+				this.Funcs = Funcs;
+			}
+
+			Func<Task> Funcs;
+
+			public async void Run()
+			{
+				await Task.Run(Funcs);
+
+		}
+
+
     }
 
 }
