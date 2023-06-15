@@ -22,6 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Models">
+      <HintPath>..\..\Models\bin\Debug\netstandard2.0\Models.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Control\ButtonActionControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -52,11 +58,5 @@
     <EmbeddedResource Update="UIRemote\setupScreenRemotely.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Models">
-      <HintPath>..\..\Models\bin\Debug\netstandard2.0\Models.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <StackLayout>
                         
@@ -30,7 +30,7 @@
                            FontSize="20"
                            LineBreakMode="WordWrap"
                            TextColor="White"
-                           HorizontalTextAlignment="Start"
+                           HorizontalTextAlignment="Center"
                            VerticalOptions="CenterAndExpand"
                            Margin="20,7,0,0" />
                       

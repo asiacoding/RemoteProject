@@ -125,7 +125,7 @@ namespace BlueApp.Droid
         }
 
 
-
+		//Send IR
         public async void Write(string name)
         {
             try
@@ -139,6 +139,7 @@ namespace BlueApp.Droid
                 }
                 byte[] buffer = Encoding.ASCII.GetBytes(name); // Convert Normal String to Number Code (Encoding ASCII)
                 await _Socket.OutputStream.WriteAsync(buffer, 0, buffer.Length); //Send Buffer to Bluthooht Device
+
             }
             catch (Exception)
             {
@@ -188,7 +189,7 @@ namespace BlueApp.Droid
         //    }
         //}
 
-
+		//Read IR 
         public async Task<string> BluetoothListeningforOne(
             bool ConvertToString = true,
             bool AfterListeningConnect = false)

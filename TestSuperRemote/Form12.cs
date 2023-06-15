@@ -131,11 +131,13 @@ namespace TestSuperRemote
                 if (string1.Contains(Trget.Text))
                 {
 
-                    if (Pic.ImageLocation == "images.png")
-                        Pic.ImageLocation = "imageRed.png";
-                    else
-                        Pic.ImageLocation = "images.png";
-                }
+					if (Pic.BackColor == Color.Transparent)
+						Pic.BackColor = Color.Green;
+
+					else
+						Pic.BackColor = Color.Transparent;
+
+				}
             }
         }
 
