@@ -25,6 +25,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9FAE04E-5002-4543-AF67-325C7ABA6852}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		..\..\..\Arduino-Nano-pinout-768x768.jpg = ..\..\..\Arduino-Nano-pinout-768x768.jpg
+		Test\sketches\Test.ino = Test\sketches\Test.ino
 	EndProjectSection
 EndProject
 Global

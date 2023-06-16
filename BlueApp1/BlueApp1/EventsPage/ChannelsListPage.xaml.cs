@@ -62,21 +62,27 @@ namespace BlueApp.EventsPage
 
             if (ContactsList.IsVisible)
             {
+
                 ContactsList.IsVisible = false;
+
                 AddNewChannels.IsVisible = true;
+
                 BtnSave.Text = "save channels";
+
                 return;
             }
 
             if (string.IsNullOrEmpty(ChannelName.Text))
             {
                 _ = ChannelName.Focus();
+
                 return;
             }
 
             if (string.IsNullOrEmpty(ChannelNumber.Text))
             {
                 _ = ChannelNumber.Focus();
+
                 return;
             }
 
@@ -102,19 +108,25 @@ namespace BlueApp.EventsPage
         public void Save(ChannelModels channel)
         {
             bool StatisSave = Models.Standard.Set.AddModel<ChannelModels>.Add(channel);
+
             if (StatisSave)
             {
-                RefItemSource(); //Ref Models
+
+                RefItemSource(); //Ref Models 
 
                 ContactsList.IsVisible = true;
+
                 AddNewChannels.IsVisible = false;
-                BtnSave.Text = "Add channels";
+
+                BtnSave.Text = "Add channels"; 
 
             }
             else
             {
+
                 this.DisplayErrorAlert();
-            }
+            
+			}
         }
 
       

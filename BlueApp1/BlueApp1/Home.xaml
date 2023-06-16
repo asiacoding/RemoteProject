@@ -21,7 +21,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
                     <StackLayout>
                         
@@ -43,13 +43,15 @@
                                Margin="6,0,0,6"  />
                         
                     </StackLayout>
-                    <Button Text="" 
+                    <!-- Connect / Disconnect -->
+                    <Button Text=""  
                             x:Name="ConnectBtn"
                             Grid.Column="1"
                             FontSize="12"
                             BackgroundColor="#75AE94"
                             Clicked="Checkconnect"
                             TextColor="White"   />
+                    
                 </Grid>
             </Frame>
             <ScrollView Grid.Row="1">
@@ -98,7 +100,10 @@
 
                         <StackLayout Grid.ColumnSpan="3" 
                                         Grid.Row="2" Grid.RowSpan="8" BackgroundColor="#eee">
+                            <Entry x:Name="Xenters" />
+                            <Button Text="send Code CMD Device" x:Name="XCode" Clicked="EnterCode" />
                             
+                            <Label Text="send Code CMD Device" x:Name="RetrunCode" />
                         </StackLayout>
                         
                         
