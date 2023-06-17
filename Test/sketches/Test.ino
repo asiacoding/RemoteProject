@@ -2,8 +2,8 @@
 #include <SoftwareSerial.h>
 
 /////////////////////////////////////////////////////////////
-const int BlueTX = 7;
-const int BlueRX = 6;
+const int BlueTX = 6;
+const int BlueRX = 7;
 
 // const int IRLED = 3; // Old 5
 

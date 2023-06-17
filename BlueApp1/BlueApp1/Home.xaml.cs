@@ -127,12 +127,6 @@ namespace BlueApp
 			this.GOTO(new Setting());
 		}
 
-
-
-
-
-
-
 		private void GotoPageProjects(object sender, EventArgs e) //Do Selecting Item from Piker1
 		{
 			try
@@ -148,7 +142,9 @@ namespace BlueApp
 					var MyObject = CurrentProject[SelectIndex];
 
 					if (MyObject is RemoteProjectModels GetProject)
+					{
 						this.GOTO(new OpenProjectRemote(GetProject.Guid));
+					}
 
 				}
 			}
@@ -199,7 +195,7 @@ namespace BlueApp
 				if (cmd.IsConnect)
 				{
 
-					cmd.Write(Xenters.Text.Replace(";;",";"));
+					cmd.Write(Xenters.Text.Replace(";;", ";"));
 
 					if (Xenters.Text.Contains(";;"))
 					{
