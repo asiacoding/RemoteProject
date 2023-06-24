@@ -183,6 +183,38 @@ namespace BlueApp
 
 		private async void EnterCode(object sender, EventArgs e)
 		{
+			//await MethotBluethoothConn();
+			try
+			{
+				var Set = Xamarin.Forms.DependencyService.Get<BlueApp1.Interface.USBSerial>();
+				var SetingInt = Set.Set(Xenters.Text, 4000);
+				RetrunCode.Text = SetingInt + " index";
+			}
+			catch (Exception ex)
+			{
+			  await this.DisplayAlert("", ex.Message, "Back");
+			}
+		}
+
+		private async void GetCode(object sender, EventArgs e)
+		{
+			try
+			{
+				var Set = Xamarin.Forms.DependencyService.Get<BlueApp1.Interface.USBSerial>();
+				var SetingsString = Set.Get(3000);
+				RetrunCode.Text = SetingsString;
+				RetrunCode.Text += "\n "+Set.HotLine;
+
+			}
+			catch (Exception ex)
+			{
+			  await this.DisplayAlert("", ex.Message, "Back");
+			}
+		}
+
+
+		private async Task MethotBluethoothConn()
+		{
 			try
 			{
 				var cmd = Xamarin.Forms.DependencyService.Get<IBlueServices>();
@@ -213,6 +245,29 @@ namespace BlueApp
 			{
 				_ = DisplayAlert("", ex.Message, "back");
 			}
+		}
+
+		private void readSerialProt(object sender, EventArgs e)
+		{
+			try
+			{
+				var cmd = Xamarin.Forms.DependencyService.Get<BlueApp1.Interface.USBSerial>();
+				var Getlist = cmd.GetList();
+
+				foreach (var item in Getlist)
+				{
+					DisplayAlert("", item, "Back");
+				}
+
+
+			}
+			catch (Exception ex)
+			{
+				DisplayAlert("", ex.Message, "Back");
+
+			}
+
+
 		}
 	}
 

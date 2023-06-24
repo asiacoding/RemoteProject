@@ -21,30 +21,29 @@
                             <StackLayout Orientation="Horizontal"   >
 
 
-                                <!-- Keyboard 
-                        -->
+                                <!-- Keyboard   -->
                                 <ImageButton BackgroundColor="#75AE94"
-                                     HeightRequest="50" 
-                                     Clicked="SetKeyboard"
-                                     Source="pincode_keyboard" />
+                                             HeightRequest="50" 
+                                             Clicked="SetKeyboard"
+                                             Source="pincode_keyboard" />
 
-                                <!-- Microphone 
-                        -->
+                                <!-- Microphone -->
                                 <ImageButton Source="microphone" 
-                                     BackgroundColor="#75AE94"
-                                     HeightRequest="50" Clicked="MicroPhoneCode" />
+                                             BackgroundColor="#75AE94"
+                                             HeightRequest="50" 
+                                             Clicked="MicroPhoneCode" />
 
                                 <!-- EDIT  -->
                                 <ImageButton Source="edit" 
-                                     BackgroundColor="#75AE94"
-                                     HeightRequest="50" Clicked="restAPp"
-                                     />
+                                             BackgroundColor="#75AE94"
+                                             HeightRequest="50"
+                                             Clicked="restAPp" />
+
                                 <!-- List Chanels -->
                                 <ImageButton Source="ListChanels"
-                                     BackgroundColor="#75AE10"
-                                     HeightRequest="50" Clicked="ChanelsList" />
-
-
+                                             BackgroundColor="#75AE10"
+                                             HeightRequest="50" 
+                                             Clicked="ChanelsList" />
 
                             </StackLayout>
                         </Frame>
@@ -74,20 +73,25 @@
                         <control:CustomButtonRemotely  Grid.ColumnSpan="3"  
                                                        Source="up"  
                                                        Padding="5" 
-                                                       x:Name="cb_up"
+                                                       x:Name="cb_up" 
+                                                       NameCode="up"
                                                        BackgroundColor="Transparent" />
+
                         <!-- Left -->
                         <control:CustomButtonRemotely Grid.Row="1" 
                                                       BackgroundColor="Transparent"
                                                       x:Name="cb_left"
                                                       Padding="5"
+                                                      NameCode="left"
                                                       Source="left" />
+
                         <!-- Left -->
                         <control:CustomButtonRemotely Grid.Row="1"            
                                                       x:Name="cb_ok"
                                                       Grid.Column="1"   
                                                       Padding="5" 
-                                                      BackgroundColor="Transparent"
+                                                      BackgroundColor="Transparent" 
+                                                      NameCode="ok"
                                                       Source="ok" />
                         <!-- Right -->
                         <control:CustomButtonRemotely Grid.Row="1" 
@@ -95,13 +99,15 @@
                                                       Grid.Column="2"    
                                                       BackgroundColor="Transparent"
                                                       Source="right" 
+                                                      NameCode="right"
                                                       Padding="5" />
                         <!-- Down -->
                         <control:CustomButtonRemotely Grid.Row="2" 
                                                       x:Name="cb_down"
                                                       BackgroundColor="Transparent"
                                                       Padding="5"
-                                                      Grid.ColumnSpan="3" 
+                                                      Grid.ColumnSpan="3"  
+                                                      NameCode="down"
                                                       Source="down" />
                     </Grid>
                 </ScrollView>
@@ -127,72 +133,84 @@
                                                        Grid.Row="0" 
                                                        x:Name="cb_power"
                                                        Grid.Column="0"
-                                                       Source="power" />
+                                                       NameCode="power"
+                                                       Source="power"      />
 
                         <control:CustomButtonRemotely  CornerRadius="50"
                                                        Grid.Row="0" 
                                                        x:Name="cb_0"
                                                        Grid.Column="1"
+                                                       NameCode="0"
                                                        Source="_0" />
 
                         <control:CustomButtonRemotely  CornerRadius="50" 
                                                        Grid.Row="0" 
                                                        x:Name="cb_NoSound"
                                                        Grid.Column="2" 
+                                                       NameCode="noSound"
                                                        Source="noSound" />
 
                         <control:CustomButtonRemotely CornerRadius="50"
                                                        Grid.Row="1" 
                                                        x:Name="cb_1"
                                                        Grid.Column="0" 
+                                                       NameCode="1"
                                                        Source="_1" />
 
                         <control:CustomButtonRemotely CornerRadius="50" 
                                                        Grid.Row="1" 
                                                        x:Name="cb_2"
                                                        Grid.Column="1" 
+                                                       NameCode="2"
                                                        Source="_2" />
 
                         <control:CustomButtonRemotely  CornerRadius="50" 
                                                        Grid.Row="1" 
                                                        x:Name="cb_3"
-                                                       Grid.Column="2" 
+                                                       Grid.Column="2"
+                                                       NameCode="3"
                                                        Source="_3" />
 
                         <control:CustomButtonRemotely CornerRadius="50" 
                                                       Grid.Row="2" 
                                                       x:Name="cb_4"
                                                       Grid.Column="0" 
+                                                      NameCode="4"
                                                       Source="_4" />
 
                         <control:CustomButtonRemotely CornerRadius="50"
                                                       Grid.Row="2"
                                                       x:Name="cb_5"
                                                       Grid.Column="1" 
+                                                      NameCode="5"
                                                       Source="_5" />
 
                         <control:CustomButtonRemotely CornerRadius="50"
                                                       Grid.Row="2"
                                                       x:Name="cb_6"
                                                       Grid.Column="2" 
+                                                      NameCode="6"
                                                       Source="_6" />
 
                         <control:CustomButtonRemotely CornerRadius="50"
                                                       Grid.Row="3"
                                                       x:Name="cb_7"
                                                       Grid.Column="0" 
+                                                      NameCode="7"
                                                       Source="_7" />
 
                         <control:CustomButtonRemotely CornerRadius="50" 
                                                       Grid.Row="3" 
                                                       x:Name="cb_8"
                                                       Grid.Column="1" 
+                                                      NameCode="8"
                                                       Source="_8" />
 
                         <control:CustomButtonRemotely CornerRadius="50" BackgroundColor="Transparent"
                                                       Grid.Row="3" 
                                                       x:Name="cb_9"
                                                       Grid.Column="2" 
+                                                      NameCode="9"
                                                       Source="_9" />
 
                     </Grid>
@@ -206,11 +224,16 @@
 
 
 
-                        <Frame Padding="4"  CornerRadius="20"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#75AE94" >
-                            <Button Text="OTher Button Remote"
-                                            BackgroundColor="#75AE94"
-                                            TextColor="White"  />
-                        </Frame>
+            
+
+                            <control:CustomButtonRemotely CornerRadius="50" BackgroundColor="Transparent"
+                               
+                                                      x:Name="otherButton1"
+                                                      Grid.Column="2" 
+                                                      NameCode="9"
+                                                      Source="_9" />
+
+           
 
                     </StackLayout>
                 </ScrollView>

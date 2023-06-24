@@ -101,7 +101,9 @@
                         <StackLayout Grid.ColumnSpan="3" 
                                         Grid.Row="2" Grid.RowSpan="8" BackgroundColor="#eee">
                             <Entry x:Name="Xenters" />
-                            <Button Text="send Code CMD Device" x:Name="XCode" Clicked="EnterCode" />
+                            <Button Text="Write" x:Name="XCode" Clicked="EnterCode" />
+                            <Button Text="Read"   Clicked="GetCode" />
+                            <Button Text="GetItems"   Clicked="readSerialProt" />
                             
                             <Label Text="send Code CMD Device" x:Name="RetrunCode" />
                         </StackLayout>

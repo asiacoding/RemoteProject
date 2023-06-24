@@ -48,6 +48,7 @@ namespace BlueApp.UIRemote
             cb_ok.MainPageOwner =
             cb_NoSound.MainPageOwner =
             cb_down.MainPageOwner = this;
+			//Send 
         }
 
 
@@ -95,6 +96,8 @@ namespace BlueApp.UIRemote
         {
             IBlueServices ServicesBLUE = DependencyService.Get<IBlueServices>();
             ServicesBLUE.Write("ResetApp;");
-        }
+			var Set = Xamarin.Forms.DependencyService.Get<BlueApp1.Interface.USBSerial>();
+			var SetingsString = Set.Set("ResetApp;", 3000);
+		}
     }
 }

@@ -8,6 +8,9 @@ using Android.Speech;
 using Android.Content;
 using Android.Views;
 using BlueApp.interface_enum;
+using Android.Hardware.Usb;
+
+[assembly: UsesFeature("android.hardware.usb.host")]
 
 namespace BlueApp.Droid
 {
@@ -43,7 +46,11 @@ namespace BlueApp.Droid
         Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable, Intent.ActionView
             })]
 
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IMessageSender
+
+	[IntentFilter(new[] { UsbManager.ActionUsbDeviceAttached })]
+	[MetaData(UsbManager.ActionUsbDeviceAttached, Resource = "@xml/device_filter")]
+
+	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IMessageSender
     {
 
         public static string HardwareTapsNow;
@@ -53,7 +60,8 @@ namespace BlueApp.Droid
         {
             base.OnCreate(savedInstanceState);
             MainActivitY = this;
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+			RemoveBorderApp();
+			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new Application());
         }
